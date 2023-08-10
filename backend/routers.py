@@ -25,8 +25,6 @@ async def get_show(request: Request):
 
     serialized_show = json.loads(dumps(show))
 
-    print (serialized_show)
-    
     return serialized_show
 
 
