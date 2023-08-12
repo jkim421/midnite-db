@@ -18,11 +18,9 @@ app = FastAPI()
 
 app.debug = debug
 
-origins = [cors_origins]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=[cors_origins],
     allow_credentials=True,
     allow_methods=["GET"],
     allow_headers=["*"],
