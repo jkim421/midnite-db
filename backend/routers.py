@@ -1,10 +1,12 @@
 import json
-from motor.motor_asyncio import AsyncIOMotorCursor
-from fastapi import APIRouter, Request
-from fastapi.responses import JSONResponse
 from bson.json_util import dumps
+from motor.motor_asyncio import AsyncIOMotorCursor
+from fastapi import APIRouter, Request, Query
+from fastapi.responses import JSONResponse
 
-from models import ShowModel, ShowsResponse
+
+from models import ShowsResponse
+from constants.filter_fields import filter_fields
 
 
 router = APIRouter()
@@ -12,36 +14,46 @@ router = APIRouter()
 
 @router.get("/")
 async def home():
-  return {"message": "on landing page"}
+    pass
 
+@router.get("/filters")
+async def get_filters(request: Request):
+    filters_collection = request.app.mongodb["filters_jikan"]
+    studios_collection = request.app.mongodb["studios_jikan"]
 
-@router.get("/show", response_model=ShowModel)
-async def get_show(request: Request):
-    collection = request.app.mongodb["shows_mal"]
-    show = await collection.find_one({"title": "Eyeshield 21"})
+    filters_cursor: AsyncIOMotorCursor = filters_collection.find({}, { "_id": 0 })
+    studios_cursor: AsyncIOMotorCursor = studios_collection.find({}, { "_id": 0 })
 
-    if show is None:
-        return JSONResponse(content={}, status_code=404)
+    # retain filter docs for non-studio filterse
+    filters = [filter_doc async for filter_doc in filters_cursor]
+    # extract strings from studio docs
+    studios = [studio_doc["name"] async for studio_doc in studios_cursor]
 
-    serialized_show = json.loads(dumps(show))
+    # group filter docs by "type"
+    grouped_filters = {}
 
-    return serialized_show
+    for filter_doc in filters:
+        type_value = filter_doc["type"]
+        grouped_filters.setdefault(type_value, []).append(filter_doc)
+
+    return {
+      **grouped_filters,
+      "studios": studios,
+    }
 
 
 @router.get("/shows", response_model=ShowsResponse)
-async def get_show(request: Request):
-    collection = request.app.mongodb["shows_mal"]
-    cursor: AsyncIOMotorCursor = collection.find({})
+async def get_show(request: Request, filters: str = Query(default="")):
+    # decoded_filters = {}
 
-    serialized_shows = []
+    # if filters:
+    #   decoded_filters = json.loads(filters)
 
-    async for show in cursor:
-        serialized_show = json.loads(dumps(show))
-        serialized_shows.append(serialized_show)
-  
-    content = {
-      "count": len(serialized_shows),
-      "shows": serialized_shows[:20],
-    }
+    collection = request.app.mongodb["shows_jikan"]
+    cursor: AsyncIOMotorCursor = collection.find({}, { "_id": 0 }).limit(10)
+
+    serialized_shows = [show_doc async for show_doc in cursor]
     
-    return content
+    return {
+      "shows": serialized_shows,
+    }
