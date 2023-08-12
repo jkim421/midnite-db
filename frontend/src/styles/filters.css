@@ -1,0 +1,25 @@
+.FiltersPanel {
+  width: 300px;
+  padding: 12px;
+  border: 1px dashed white;
+}
+
+.filter-group {
+  margin: 8px 0px 8px 0px;
+  color: white;
+}
+
+.filter-checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.filter-checkbox-label {
+  margin-left: 12px;
+  font-size: 12px;
+  color: white;
+}
+
+.filter-checkbox-last {
+  margin-bottom: 12px;
+}
