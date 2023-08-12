@@ -9,11 +9,16 @@ from routers import router
 
 load_dotenv()
 
+mongo_uri = os.environ.get("DB_URI")
+mongo_db = os.environ.get("DB_NAME")
+cors_origins = os.environ.get("CORS_ORIGIN")
+debug = os.environ.get("DEBUG")
+
 app = FastAPI()
 
-app.debug = os.environ.get("DEBUG")
+app.debug = debug
 
-origins = [os.environ.get("CORS_ORIGIN")]
+origins = [cors_origins]
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,8 +31,8 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup_db_client():
-    app.mongodb_client = AsyncIOMotorClient(os.environ.get("DB_URL"))
-    app.mongodb = app.mongodb_client[os.environ.get("DB_NAME")]
+    app.mongodb_client = AsyncIOMotorClient(mongo_uri)
+    app.mongodb = app.mongodb_client[mongo_db]
 
 
 @app.on_event("shutdown")
