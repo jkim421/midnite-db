@@ -1,69 +1,46 @@
-from typing import Optional, List
+from typing import Optional, List, Union
 from pydantic import BaseModel
 
 
-class AltTitles(BaseModel):
-    en: str
-    ja: str
-    synonyms:  List[str]
+class Titles(BaseModel):
+    default: str
+    english: Optional[str] = None
 
 
-class Pictures(BaseModel):
+class Images(BaseModel):
+    small: str
     large: str
-    medium: str
 
 
-# class Recommendation(BaseModel):
-#     id: int
-#     title: str
-#     num_recommendations: int
-
-
-# class StartSeason(BaseModel):
-#     season: str
-#     year: int
-
-
-# class WatchStatus(BaseModel):
-#     completed: Union[int, str]
-#     dropped: Union[int, str]
-#     on_hold: Union[int, str]
-#     plan_to_watch: Union[int, str]
-#     watching: Union[int, str]
-    
-
-# class Statistics(BaseModel):
-#     num_list_users: int
-#     status: WatchStatus
+class Years(BaseModel):
+    start: Optional[int] = None
+    end: Optional[int] = None
 
 
 class ShowModel(BaseModel):
     mal_id: int
+    url: str
+    images: Images
     title: str
-    alt_titles: AltTitles
-    media_type: str
-    start_date: Optional[str] = None
-    end_date: Optional[str] = None
+    titles: Optional[Titles] = {}
+    title: str
+    type: Optional[str] = None
+    source: str
+    episodes: Optional[int] = None
     status: str
-    num_episodes: int
     rating: Optional[str] = None
+    score: Optional[Union[int, float]] = None
+    scored_by: Optional[int] = None
+    rank: Optional[int] = None
+    popularity: int
+    members: int
+    synopsis: Optional[str] = None
     studios: List[str]
-    genres: Optional[List[str]] = []
-    pictures: Optional[Pictures] = {}
-    synopsis: str
-    mal_popularity: int
-    mal_rank: Optional[int] = None
-    mal_score: Optional[float] = None
-    updated_at: str
-    # nsfw: str
-    # num_list_users: Optional[int] = None
-    # num_scoring_users: Optional[int] = None
-    # recommendations: List[Recommendation]
-    # source: Optional[str] = None
-    # start_season: Optional[StartSeason] = {}
-    # statistics: Optional[Statistics] = {}
+    genres: List[str]
+    themes: List[str]
+    demographics: List[str]
+    years: Years
 
 
 class ShowsResponse(BaseModel):
-    count: int
     shows: List[ShowModel]
