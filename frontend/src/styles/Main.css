@@ -1,0 +1,14 @@
+.app {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+}
+
+.app-header {
+  color: white;
+}
+
+.show-section {
+  margin: 12px;
+  color: white;
+}

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import FiltersPanel from './FiltersPanel'
 
 import fetchFilters from '../utils/fetchFilters'
+import '../styles/Main.css'
 
 const Main = () => {
   const [filters, setFilters] = useState({})
@@ -20,9 +21,19 @@ const Main = () => {
   }, []);
 
   return (
-    <section style={{ margin: 24, border: '1px dashed black' }}>
+    <main className="app">
       <FiltersPanel filters={filters} />
-    </section>
+      <section className="show-section">
+        <header className='app-header'>
+          <h3>
+            midnite-db
+          </h3>
+        </header>
+        <div>
+          SHOW DISPLAY
+        </div>
+      </section>
+    </main>
   )
 };
 
