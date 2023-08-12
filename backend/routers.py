@@ -1,12 +1,7 @@
-import json
-from bson.json_util import dumps
 from motor.motor_asyncio import AsyncIOMotorCursor
 from fastapi import APIRouter, Request, Query
-from fastapi.responses import JSONResponse
-
 
 from models import ShowsResponse
-from constants.filter_fields import filter_fields
 
 
 router = APIRouter()
@@ -34,6 +29,7 @@ async def get_filters(request: Request):
 
     for filter_doc in filters:
         type_value = filter_doc["type"]
+        # assign key to empty list when first accessing each type key
         grouped_filters.setdefault(type_value, []).append(filter_doc)
 
     return {
