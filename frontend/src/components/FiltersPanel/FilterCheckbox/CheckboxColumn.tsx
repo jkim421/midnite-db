@@ -9,7 +9,7 @@ interface CheckboxColumnProps {
   title: string,
   data: FilterOptionType[],
   addRightPadding: boolean,
-};
+}
 
 const CheckboxColumn = ({
   title,

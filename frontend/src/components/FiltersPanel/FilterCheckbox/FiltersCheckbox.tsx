@@ -9,7 +9,7 @@ import '../../../styles/filters.css'; //! ~/styles/filters.css import isn't work
 interface FiltersCheckboxProps {
   title: string,
   filterData: FilterOptionType[],
-};
+}
 
 // max of 2 columns
 const MIN_COLUMN_SIZE = 4

@@ -5,7 +5,7 @@ import FiltersCheckbox from './FilterCheckbox';
 interface FiltersPanelProps {
   isLoading: boolean,
   filters: FiltersType,
-};
+}
 
 const FiltersPanel = ({ isLoading, filters }: FiltersPanelProps) => {
   if (isLoading) return null;
