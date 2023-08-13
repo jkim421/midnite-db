@@ -4,21 +4,21 @@
   border: 1px dashed white;
 }
 
-.filter-checkbox-group {
+.multiselect-filter_title {
   margin: 8px 0px 8px 0px;
   color: white;
 }
 
-.filter-checkbox-group-columns {
+.multiselect-filter_columns {
   display: flex;
   align-items: flex-start;
 }
 
-.filter-checkbox-column {
+.multiselect-filter_column {
   min-width: 120px;
 }
 
-.filter-checkbox-column_left {
+.multiselect-filter_column_left {
   padding-right: 18px;
 }
 

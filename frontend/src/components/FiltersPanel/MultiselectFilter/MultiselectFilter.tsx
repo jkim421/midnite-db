@@ -6,14 +6,14 @@ import CheckboxColumn from './CheckboxColumn';
 
 import '../../../styles/filters.css'; //! ~/styles/filters.css import isn't working
 
-interface FiltersCheckboxProps {
+interface MultiselectFilterProps {
   title: string;
   filterData: FilterOptionType[];
 }
 
 const MIN_COLUMN_SIZE = 4;
 
-const FiltersCheckbox = ({ title, filterData }: FiltersCheckboxProps) => {
+const MultiselectFilter = ({ title, filterData }: MultiselectFilterProps) => {
   const isMultiColumn = filterData.length > MIN_COLUMN_SIZE;
 
   let filterColumns = [filterData];
@@ -29,20 +29,20 @@ const FiltersCheckbox = ({ title, filterData }: FiltersCheckboxProps) => {
   }
 
   return (
-    <>
-      <h5 className="filter-checkbox-group">{title}</h5>
-      <section className="filter-checkbox-group-columns">
+    <section>
+      <h5 className="multiselect-filter_title">{title}</h5>
+      <div className="multiselect-filter_columns">
         {filterColumns.map((columnData, idx) => (
           <CheckboxColumn
-            key={`${_.kebabCase(title)}-column-${idx}`}
+            key={`${_.kebabCase(title)})-filter_column-${idx}`}
             title={title}
             data={columnData}
             addRightPadding={isMultiColumn && idx === 0}
           />
         ))}
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
-export default FiltersCheckbox;
+export default MultiselectFilter;

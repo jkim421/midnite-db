@@ -1,6 +1,6 @@
 import { FiltersType } from '~/types/filterTypes';
 
-import FiltersCheckbox from './FilterCheckbox';
+import MultiselectFilter from './MultiselectFilter';
 
 interface FiltersPanelProps {
   isLoading: boolean;
@@ -15,27 +15,27 @@ const FiltersPanel = ({ isLoading, filters }: FiltersPanelProps) => {
 
   return (
     <section className="FiltersPanel">
-      <FiltersCheckbox
+      <MultiselectFilter
         title="Media Type"
         filterData={type}
       />
-      <FiltersCheckbox
+      <MultiselectFilter
         title="Status"
         filterData={status}
       />
-      <FiltersCheckbox
+      <MultiselectFilter
         title="Rating"
         filterData={rating}
       />
-      <FiltersCheckbox
+      <MultiselectFilter
         title="Genre"
         filterData={genre}
       />
-      <FiltersCheckbox
+      <MultiselectFilter
         title="Theme"
         filterData={theme}
       />
-      <FiltersCheckbox
+      <MultiselectFilter
         title="Demographic"
         filterData={demographic}
       />

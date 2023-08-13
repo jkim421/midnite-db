@@ -2,8 +2,7 @@ import _ from 'lodash';
 
 import { FilterOptionType } from '~/types/filterTypes';
 
-const COLUMN_CLASS = 'filter-checkbox-column';
-const LEFT_COLUMN_CLASS = 'filter-checkbox-column_left';
+const COLUMN_CLASS = 'multiselect-filter_column';
 
 interface CheckboxColumnProps {
   title: string;
@@ -17,7 +16,7 @@ const CheckboxColumn = ({
   addRightPadding,
 }: CheckboxColumnProps) => {
   const className = addRightPadding
-    ? COLUMN_CLASS.concat(` ${LEFT_COLUMN_CLASS}`)
+    ? COLUMN_CLASS.concat(` ${COLUMN_CLASS}_left`)
     : COLUMN_CLASS;
 
   return (
