@@ -3,22 +3,14 @@ import { FiltersType } from '~/types/filterTypes';
 import FiltersCheckbox from './FilterCheckbox';
 
 interface FiltersPanelProps {
-  isLoading: boolean,
-  filters: FiltersType,
+  isLoading: boolean;
+  filters: FiltersType;
 }
 
 const FiltersPanel = ({ isLoading, filters }: FiltersPanelProps) => {
   if (isLoading) return null;
 
-  const {
-    type,
-    status,
-    rating,
-    genre,
-    theme,
-    demographic,
-    studios,
-  } = filters;
+  const { type, status, rating, genre, theme, demographic, studios } = filters; //! multi-line object formatting not working
 
   return (
     <section className="FiltersPanel">
@@ -48,7 +40,7 @@ const FiltersPanel = ({ isLoading, filters }: FiltersPanelProps) => {
       />
       <h5>{studios.length}</h5>
     </section>
-  )
+  );
 };
 
 export default FiltersPanel;

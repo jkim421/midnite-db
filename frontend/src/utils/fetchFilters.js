@@ -1,4 +1,4 @@
-const fetchFilters = async (serverUrl) => {
+const fetchFilters = async serverUrl => {
   try {
     const response = await fetch(`${serverUrl}/filters`, {
       method: 'get',
