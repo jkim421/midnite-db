@@ -1,6 +1,6 @@
-import _ from 'lodash';
+import React from 'react';
 
-import { FilterOptionType } from '~/types/filterTypes';
+import { FilterOptionType } from '../../../types/filterTypes';
 
 import CheckboxColumn from './CheckboxColumn';
 
@@ -35,10 +35,10 @@ const MultiselectFilter = ({ title, filterData }: MultiselectFilterProps) => {
         {filterColumns.map((columnData, idx) => (
           <CheckboxColumn
             key={`${_.kebabCase(title)})-filter_column-${idx}`}
-            title={title}
+        title={title}
             data={columnData}
             addRightPadding={isMultiColumn && idx === 0}
-          />
+      />
         ))}
       </div>
     </section>

@@ -1,6 +1,7 @@
+import React from 'react';
 import _ from 'lodash';
 
-import { FilterOptionType } from '~/types/filterTypes';
+import { FilterOptionType } from '../../../types/filterTypes';
 
 const COLUMN_CLASS = 'multiselect-filter_column';
 

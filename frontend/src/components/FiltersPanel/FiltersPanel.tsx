@@ -1,4 +1,6 @@
-import { FiltersType } from '~/types/filterTypes';
+import React from 'react';
+
+import { FiltersType } from '../../types/filterTypes';
 
 import MultiselectFilter from './MultiselectFilter';
 
@@ -8,13 +10,15 @@ interface FiltersPanelProps {
 }
 
 const FiltersPanel = ({ isLoading, filters }: FiltersPanelProps) => {
-  if (isLoading) return null;
+  // TODO - build out full loading ui
+  if (isLoading)
+    return <section className="FiltersPanel">Loading filters...</section>;
 
   //! multi-line object formatting not working
   const { type, status, rating, genre, theme, demographic, studios } = filters;
 
   return (
-    <section className="FiltersPanel">
+    <div className="FiltersPanel">
       <MultiselectFilter
         title="Media Type"
         filterData={type}
@@ -40,7 +44,7 @@ const FiltersPanel = ({ isLoading, filters }: FiltersPanelProps) => {
         filterData={demographic}
       />
       <h5>{studios.length}</h5>
-    </section>
+    </div>
   );
 };
 
