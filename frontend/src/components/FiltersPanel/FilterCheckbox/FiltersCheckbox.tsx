@@ -11,7 +11,6 @@ interface FiltersCheckboxProps {
   filterData: FilterOptionType[];
 }
 
-// max of 2 columns
 const MIN_COLUMN_SIZE = 4;
 
 const FiltersCheckbox = ({ title, filterData }: FiltersCheckboxProps) => {
@@ -20,6 +19,7 @@ const FiltersCheckbox = ({ title, filterData }: FiltersCheckboxProps) => {
   let filterColumns = [filterData];
 
   if (isMultiColumn) {
+    // two columns
     const columnLength = Math.round(filterData.length / 2);
 
     filterColumns = [

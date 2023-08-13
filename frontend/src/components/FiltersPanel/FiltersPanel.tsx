@@ -10,7 +10,8 @@ interface FiltersPanelProps {
 const FiltersPanel = ({ isLoading, filters }: FiltersPanelProps) => {
   if (isLoading) return null;
 
-  const { type, status, rating, genre, theme, demographic, studios } = filters; //! multi-line object formatting not working
+  //! multi-line object formatting not working
+  const { type, status, rating, genre, theme, demographic, studios } = filters;
 
   return (
     <section className="FiltersPanel">
