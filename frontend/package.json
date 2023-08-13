@@ -24,21 +24,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "cd .. && husky install frontend/.husky"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ],
-    "*.{html,css,less,ejs}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "browserslist": {
     "production": [
