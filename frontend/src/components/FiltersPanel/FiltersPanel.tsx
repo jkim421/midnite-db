@@ -1,10 +1,14 @@
-import React from 'react';
-import _ from 'lodash';
+import { FiltersType } from '~/types/filterTypes';
 
-import FiltersCheckbox from '../FilterCheckbox';
+import FiltersCheckbox from './FilterCheckbox';
 
-const FiltersPanel = ({ filters }) => {
-  if (_.isEmpty(filters)) return null
+interface FiltersPanelProps {
+  isLoading: boolean,
+  filters: FiltersType,
+};
+
+const FiltersPanel = ({ isLoading, filters }: FiltersPanelProps) => {
+  if (isLoading) return null;
 
   const {
     type,
