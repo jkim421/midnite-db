@@ -4,22 +4,26 @@
   border: 1px dashed white;
 }
 
-.filter-group {
+.filter-checkbox-group {
   margin: 8px 0px 8px 0px;
   color: white;
 }
 
-.filter-checkbox-container {
+.filter-checkbox-group-columns {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.filter-checkbox-column {
+  min-width: 120px;
+}
+
+.filter-checkbox-column_left {
+  padding-right: 18px;
 }
 
 .filter-checkbox-label {
   margin-left: 12px;
   font-size: 12px;
   color: white;
-}
-
-.filter-checkbox-last {
-  margin-bottom: 12px;
 }
