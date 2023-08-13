@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
 
-import { MainStateType } from '~/types/filterTypes';
+import { FiltersType } from '~/types/filterTypes';
 
 import Main from './Main';
 
 import fetchFilters from '../../utils/fetchFilters';
 
+interface FiltersDataStateType {
+  loading: boolean;
+  data: FiltersType;
+}
+
 const MainContainer = () => {
-  const [filtersData, setFiltersData] = useState<MainStateType>({
+  const [filtersData, setFiltersData] = useState<FiltersDataStateType>({
     loading: true,
     data: {
       type: [],

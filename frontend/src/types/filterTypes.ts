@@ -1,8 +1,3 @@
-export interface MainStateType {
-  loading: boolean;
-  data: FiltersType;
-}
-
 export interface FilterOptionType {
   type: string;
   value: string;
