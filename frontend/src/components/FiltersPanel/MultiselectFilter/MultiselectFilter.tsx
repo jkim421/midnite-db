@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { FilterOptionType } from '../../../types/filterTypes';
+import { MultiselectFilterProps } from '../../../types/filterTypes';
 
 import CheckboxColumns from '../CheckboxColumns/CheckboxColumns';
 
+import { getIsMultiColumn } from '../../../utils/filterUtils';
 import '../../../styles/filters.css';
 
-interface MultiselectFilterProps {
-  title: string;
-  filterData: FilterOptionType[];
-}
-
-const MIN_COLUMN_SIZE = 4;
-
-const MultiselectFilter = ({ title, filterData }: MultiselectFilterProps) => {
-  const isMultiColumn = filterData.length > MIN_COLUMN_SIZE;
+const MultiselectFilter = ({
+  title,
+  filterData,
+  selectionsKey,
+  selections,
+  setSelections,
+}: MultiselectFilterProps) => {
+  const isMultiColumn = getIsMultiColumn(filterData);
 
   return (
     <section>

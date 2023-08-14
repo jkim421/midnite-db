@@ -1,23 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import _ from 'lodash';
 
-import { FilterOptionType } from '../../../types/filterTypes';
+import { CheckboxColumnsProps } from '../../../types/filterTypes';
 
 import CheckboxColumn from './CheckboxColumn';
 
 import { getMultiColumnData } from '../../../utils/filterUtils';
-
-interface CheckboxColumnsProps {
-  filterData: FilterOptionType[];
-  title: string;
-  isMultiColumn: boolean;
-}
 
 const CheckboxColumns = ({
   filterData,
   title,
   isMultiColumn,
 }: CheckboxColumnsProps) => {
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+
   let filterColumns = [filterData];
 
   if (isMultiColumn) filterColumns = getMultiColumnData(filterData);
@@ -30,6 +26,8 @@ const CheckboxColumns = ({
           title={title}
           data={columnData}
           addRightPadding={isMultiColumn && idx === 0}
+          selectedValues={selectedValues}
+          setSelectedValues={setSelectedValues}
         />
       ))}
     </div>

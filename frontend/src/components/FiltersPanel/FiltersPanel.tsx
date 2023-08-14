@@ -1,49 +1,78 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
+import _ from 'lodash';
 
-import { FiltersType } from '../../types/filterTypes';
+import {
+  FilterOptionType,
+  FiltersType,
+  FilterSelectionsStateType,
+} from '../../types/filterTypes';
 
 import MultiselectFilter from './MultiselectFilter';
+import MultiselectFilterWithClauses from './MultiselectFilterWithClauses';
 
 interface FiltersPanelProps {
   isLoading: boolean;
   filters: FiltersType;
+  selections: FilterSelectionsStateType;
+  setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
 }
 
-const FiltersPanel = ({ isLoading, filters }: FiltersPanelProps) => {
+const MULTISELECT_FILTERS_MAP = [
+  {
+    title: 'Media Type',
+    selectionsKey: 'type',
+    Component: MultiselectFilter,
+  },
+  {
+    title: 'Status',
+    selectionsKey: 'type',
+    Component: MultiselectFilter,
+  },
+  {
+    title: 'Rating',
+    selectionsKey: 'rating',
+    Component: MultiselectFilter,
+  },
+  {
+    title: 'Genre',
+    selectionsKey: 'genre',
+    Component: MultiselectFilterWithClauses,
+  },
+  {
+    title: 'Theme',
+    selectionsKey: 'theme',
+    Component: MultiselectFilterWithClauses,
+  },
+];
+
+const FiltersPanel = ({
+  isLoading,
+  filters,
+  selections,
+  setSelections,
+}: FiltersPanelProps) => {
   // TODO - build out full loading ui
   if (isLoading)
     return <section className="FiltersPanel">Loading filters...</section>;
 
-  //! multi-line object formatting not working
-  const { type, status, rating, genre, theme, demographic, studios } = filters;
-
   return (
     <div className="FiltersPanel">
-      <MultiselectFilter
-        title="Media Type"
-        filterData={type}
-      />
-      <MultiselectFilter
-        title="Status"
-        filterData={status}
-      />
-      <MultiselectFilter
-        title="Rating"
-        filterData={rating}
-      />
-      <MultiselectFilter
-        title="Genre"
-        filterData={genre}
-      />
-      <MultiselectFilter
-        title="Theme"
-        filterData={theme}
-      />
-      <MultiselectFilter
-        title="Demographic"
-        filterData={demographic}
-      />
-      <h5>{studios.length}</h5>
+      {MULTISELECT_FILTERS_MAP.map(({ title, selectionsKey, Component }) => {
+        const filterData = filters[selectionsKey] as FilterOptionType[];
+
+        return (
+          <Component
+            key={`${_.kebabCase(title)}-filter-component`}
+            title={title}
+            filterData={filterData}
+            selectionsKey={selectionsKey}
+            selections={selections}
+            setSelections={setSelections}
+          />
+        );
+      })}
+      <h5>{`Demographics: ${filters.demographic.length}`}</h5>
+      <h5>{`Studios: ${filters.studios.length}`}</h5>
     </div>
   );
 };

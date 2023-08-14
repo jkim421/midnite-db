@@ -1,11 +1,14 @@
 import React from 'react';
-// import { useState } from 'react';
+import { useState } from 'react';
 
-import { FiltersType } from '~/types/filterTypes';
+import {
+  FiltersType,
+  FilterSelectionsStateType,
+} from '../../types/filterTypes';
 
 import FiltersPanel from '../FiltersPanel';
 
-import '../..//styles/Main.css';
+import '../../styles/Main.css';
 
 interface MainProps {
   isLoadingFilters: boolean;
@@ -13,13 +16,25 @@ interface MainProps {
 }
 
 const Main = ({ filters, isLoadingFilters }: MainProps) => {
-  // const [selections, setSelections] = useState();
+  const [selections, setSelections] = useState<FilterSelectionsStateType>({
+    type: [],
+    status: [],
+    rating: [],
+    // malScore: [0, 0],
+    // yearRange: [0, 0],
+    genres: [],
+    themes: [],
+    demographic: '',
+    studio: '',
+  });
 
   return (
     <main className="app-wrapper">
       <FiltersPanel
         isLoading={isLoadingFilters}
         filters={filters}
+        selections={selections}
+        setSelections={setSelections}
       />
       <section className="show-section">
         <header className="app-header">
