@@ -19,6 +19,7 @@ interface FiltersPanelProps {
 
 const sortFiltersBySortKey = (data: FilterOptionType[]) =>
   _.sortBy(data, 'sort');
+
 const sortFiltersAlphabetically = (data: FilterOptionType[]) =>
   _.sortBy(data, 'value');
 

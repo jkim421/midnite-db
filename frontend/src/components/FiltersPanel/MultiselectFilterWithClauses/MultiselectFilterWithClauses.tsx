@@ -12,7 +12,6 @@ import ClauseTags from './ClauseTags';
 import { getIsMultiColumn } from '../../../utils/filterUtils';
 import '../../../styles/filters.css';
 
-const MAX_CLAUSE_LENGTH = 4;
 const MAX_CLAUSES = 3;
 
 const MultiselectFilterWithClauses = ({
@@ -35,7 +34,9 @@ const MultiselectFilterWithClauses = ({
       if (checked) {
         updatedSelections.push(value);
       } else {
-        updatedSelections = updatedSelections.filter(value => value === value);
+        updatedSelections = updatedSelections.filter(
+          selection => selection !== value,
+        );
       }
 
       setCurrentSelections(updatedSelections.sort());

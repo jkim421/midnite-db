@@ -28,7 +28,9 @@ const MultiselectFilter = ({
       if (checked) {
         updatedSelections.push(value);
       } else {
-        updatedSelections = updatedSelections.filter(value => value === value);
+        updatedSelections = updatedSelections.filter(
+          selection => selection !== value,
+        );
       }
 
       setSelections((currentFilters: FilterSelectionsStateType) => ({

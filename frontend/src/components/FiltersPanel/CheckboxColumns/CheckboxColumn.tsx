@@ -1,9 +1,11 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import _ from 'lodash';
 
 import { CheckboxColumnProps } from '../../../types/filterTypes';
 
 const COLUMN_CLASS = 'multiselect-filter_column';
+
+const MAX_CLAUSE_LENGTH = 3;
 
 const CheckboxColumn = ({
   title,
@@ -23,10 +25,13 @@ const CheckboxColumn = ({
           value,
         )}_checkbox`;
 
-        const isChecked = selectedValues.includes(value);
         const label = alias || value;
 
         const onChange = getOnChange(value);
+
+        const isChecked = selectedValues.includes(value);
+        const isDisabled =
+          !isChecked && selectedValues.length >= MAX_CLAUSE_LENGTH;
 
         return (
           <div key={id}>
@@ -34,6 +39,7 @@ const CheckboxColumn = ({
               id={id}
               type="checkbox"
               checked={isChecked}
+              disabled={isDisabled}
               value={value}
               onChange={onChange}
             />
