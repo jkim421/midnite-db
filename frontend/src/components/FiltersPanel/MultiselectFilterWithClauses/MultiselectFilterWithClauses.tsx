@@ -23,6 +23,7 @@ const MultiselectFilterWithClauses = ({
   const [currentSelections, setCurrentSelections] = useState<string[]>([]);
 
   const isMultiColumn = getIsMultiColumn(filterData);
+  const isButtonDisabled = selectedValues.length >= MAX_CLAUSES;
 
   const getOnChange =
     (value: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +55,18 @@ const MultiselectFilterWithClauses = ({
     setCurrentSelections([]);
   };
 
-  const isButtonDisabled = selectedValues.length >= MAX_CLAUSES;
+  const getRemoveClause =
+    (idx: number) => (e: React.MouseEvent<HTMLDivElement>) => {
+      e.preventDefault();
+
+      const updatedClauses = [...selectedValues] as string[][];
+      updatedClauses.splice(idx, 1);
+
+      setSelections((currentFilters: FilterSelectionsStateType) => ({
+        ...currentFilters,
+        [selectionsKey]: updatedClauses,
+      }));
+    };
 
   return (
     <section>
@@ -62,6 +74,7 @@ const MultiselectFilterWithClauses = ({
       <ClauseTags
         title={title}
         clauses={selectedValues as string[][]}
+        getRemoveClause={getRemoveClause}
       />
       <button
         onClick={onSave}
