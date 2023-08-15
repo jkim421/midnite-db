@@ -24,7 +24,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
     // yearRange: [0, 0],
     genre: [],
     theme: [],
-    demographic: '',
+    demographic: [],
     studio: '',
   });
 
@@ -40,7 +40,9 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
         <header className="app-header">
           <h3>midnite-db</h3>
         </header>
-        <div>SHOW DISPLAY</div>
+        <div>
+          <pre>{JSON.stringify(selections)}</pre>
+        </div>
       </section>
     </main>
   );

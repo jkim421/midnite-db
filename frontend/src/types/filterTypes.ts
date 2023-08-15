@@ -23,11 +23,11 @@ export interface FilterSelectionsStateType {
   type: string[];
   status: string[];
   rating: string[];
+  demographic: string[];
   // malScore: [number, number];
   // yearRange: [number, number];
   genre: string[][];
   theme: string[][];
-  demographic: string;
   studio: string;
 }
 

@@ -43,6 +43,12 @@ const MULTISELECT_FILTERS_MAP = [
     sortFn: sortFiltersBySortKey,
   },
   {
+    title: 'Demographic',
+    selectionsKey: 'demographic',
+    MultiselectComponent: MultiselectFilter,
+    sortFn: sortFiltersBySortKey,
+  },
+  {
     title: 'Genre',
     selectionsKey: 'genre',
     MultiselectComponent: MultiselectFilterWithClauses,
@@ -89,7 +95,6 @@ const FiltersPanel = ({
           );
         },
       )}
-      <h5>{`Demographics: ${filters.demographic.length}`}</h5>
       <h5>{`Studios: ${filters.studios.length}`}</h5>
     </div>
   );
