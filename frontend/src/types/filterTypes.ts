@@ -25,8 +25,8 @@ export interface FilterSelectionsStateType {
   rating: string[];
   // malScore: [number, number];
   // yearRange: [number, number];
-  genres: string[][];
-  themes: string[][];
+  genre: string[][];
+  theme: string[][];
   demographic: string;
   studio: string;
 }
@@ -35,7 +35,7 @@ export interface MultiselectFilterProps {
   title: string;
   filterData: FilterOptionType[];
   selectionsKey: string;
-  selections: FilterSelectionsStateType;
+  selectedValues: string[] | string[][];
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
 }
 
@@ -43,5 +43,16 @@ export interface CheckboxColumnsProps {
   filterData: FilterOptionType[];
   title: string;
   isMultiColumn: boolean;
-  setClauses?: Dispatch<SetStateAction<[string][]>>;
+  getOnChange: MultiselectGetOnChangeFunc;
+  selectedValues: string[];
+}
+
+type MultiselectGetOnChangeFunc = (value: string) => (e: React.ChangeEvent<HTMLInputElement>) => void;
+
+export interface CheckboxColumnProps {
+  title: string;
+  data: FilterOptionType[];
+  addRightPadding: boolean;
+  getOnChange: MultiselectGetOnChangeFunc;
+  selectedValues: string[];
 }

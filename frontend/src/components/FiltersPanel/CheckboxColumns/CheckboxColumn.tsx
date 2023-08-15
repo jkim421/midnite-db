@@ -1,46 +1,20 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import _ from 'lodash';
 
-import { FilterOptionType } from '../../../types/filterTypes';
+import { CheckboxColumnProps } from '../../../types/filterTypes';
 
 const COLUMN_CLASS = 'multiselect-filter_column';
-
-interface CheckboxColumnProps {
-  title: string;
-  data: FilterOptionType[];
-  addRightPadding: boolean;
-  selectedValues: string[];
-  setSelectedValues: Dispatch<SetStateAction<string[]>>;
-}
 
 const CheckboxColumn = ({
   title,
   data,
   addRightPadding,
+  getOnChange,
   selectedValues,
-  setSelectedValues,
 }: CheckboxColumnProps) => {
   const className = addRightPadding
     ? COLUMN_CLASS.concat(` ${COLUMN_CLASS}_left`)
     : COLUMN_CLASS;
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {
-      target: { value: selectedValue, checked },
-    } = e;
-
-    let updatedSelections = [...selectedValues];
-
-    if (checked) {
-      updatedSelections.push(selectedValue);
-    } else {
-      updatedSelections = updatedSelections.filter(
-        value => value === selectedValue,
-      );
-    }
-
-    setSelectedValues(updatedSelections);
-  };
 
   return (
     <div className={className}>
@@ -48,13 +22,18 @@ const CheckboxColumn = ({
         const id = `${_.kebabCase(title)}_filter_${_.kebabCase(
           value,
         )}_checkbox`;
+
+        const isChecked = selectedValues.includes(value);
         const label = alias || value;
+
+        const onChange = getOnChange(value);
 
         return (
           <div key={id}>
             <input
               id={id}
               type="checkbox"
+              checked={isChecked}
               value={value}
               onChange={onChange}
             />

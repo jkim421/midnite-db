@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { MultiselectFilterProps } from '../../../types/filterTypes';
+import {
+  MultiselectFilterProps,
+  FilterSelectionsStateType,
+} from '../../../types/filterTypes';
 
 import CheckboxColumns from '../CheckboxColumns/CheckboxColumns';
 
@@ -11,10 +14,28 @@ const MultiselectFilter = ({
   title,
   filterData,
   selectionsKey,
-  selections,
+  selectedValues,
   setSelections,
 }: MultiselectFilterProps) => {
   const isMultiColumn = getIsMultiColumn(filterData);
+
+  const getOnChange =
+    (value: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { checked } = e.target;
+
+      let updatedSelections = [...selectedValues] as string[];
+
+      if (checked) {
+        updatedSelections.push(value);
+      } else {
+        updatedSelections = updatedSelections.filter(value => value === value);
+      }
+
+      setSelections((currentFilters: FilterSelectionsStateType) => ({
+        ...currentFilters,
+        [selectionsKey]: updatedSelections,
+      }));
+    };
 
   return (
     <section>
@@ -23,6 +44,8 @@ const MultiselectFilter = ({
         filterData={filterData}
         title={title}
         isMultiColumn={isMultiColumn}
+        getOnChange={getOnChange}
+        selectedValues={selectedValues as string[]}
       />
     </section>
   );

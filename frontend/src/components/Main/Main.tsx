@@ -22,8 +22,8 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
     rating: [],
     // malScore: [0, 0],
     // yearRange: [0, 0],
-    genres: [],
-    themes: [],
+    genre: [],
+    theme: [],
     demographic: '',
     studio: '',
   });

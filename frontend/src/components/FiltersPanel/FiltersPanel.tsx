@@ -72,18 +72,22 @@ const FiltersPanel = ({
           let filterData = filters[selectionsKey] as FilterOptionType[];
           if (sortFn) filterData = sortFn(filterData);
 
+          const selectedValues = selections[selectionsKey] as
+            | string[]
+            | string[][];
 
-        return (
+          return (
             <MultiselectComponent
-            key={`${_.kebabCase(title)}-filter-component`}
-            title={title}
-            filterData={filterData}
-            selectionsKey={selectionsKey}
-            selections={selections}
-            setSelections={setSelections}
-          />
-        );
-      })}
+              key={`${_.kebabCase(title)}-filter-component`}
+              title={title}
+              filterData={filterData}
+              selectionsKey={selectionsKey}
+              selectedValues={selectedValues}
+              setSelections={setSelections}
+            />
+          );
+        },
+      )}
       <h5>{`Demographics: ${filters.demographic.length}`}</h5>
       <h5>{`Studios: ${filters.studios.length}`}</h5>
     </div>
