@@ -27,6 +27,8 @@ const MultiselectFilterWithClauses = ({
 
   const getOnChange =
     (value: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
+
       const { checked } = e.target;
 
       let updatedSelections = [...currentSelections] as string[];
@@ -42,7 +44,9 @@ const MultiselectFilterWithClauses = ({
       setCurrentSelections(updatedSelections.sort());
     };
 
-  const onSave = () => {
+  const onSaveBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
     const updatedClauses = [...selectedValues] as string[][];
 
     updatedClauses.push(currentSelections);
@@ -77,7 +81,7 @@ const MultiselectFilterWithClauses = ({
         getRemoveClause={getRemoveClause}
       />
       <button
-        onClick={onSave}
+        onClick={onSaveBtnClick}
         disabled={isButtonDisabled}>
         Save Clause
       </button>
