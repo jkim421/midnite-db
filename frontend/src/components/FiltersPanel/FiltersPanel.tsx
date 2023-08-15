@@ -17,31 +17,41 @@ interface FiltersPanelProps {
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
 }
 
+const sortFiltersBySortKey = (data: FilterOptionType[]) =>
+  _.sortBy(data, 'sort');
+const sortFiltersAlphabetically = (data: FilterOptionType[]) =>
+  _.sortBy(data, 'value');
+
 const MULTISELECT_FILTERS_MAP = [
   {
     title: 'Media Type',
     selectionsKey: 'type',
-    Component: MultiselectFilter,
+    MultiselectComponent: MultiselectFilter,
+    sortFn: sortFiltersBySortKey,
   },
   {
     title: 'Status',
-    selectionsKey: 'type',
-    Component: MultiselectFilter,
+    selectionsKey: 'status',
+    MultiselectComponent: MultiselectFilter,
+    sortFn: sortFiltersBySortKey,
   },
   {
     title: 'Rating',
     selectionsKey: 'rating',
-    Component: MultiselectFilter,
+    MultiselectComponent: MultiselectFilter,
+    sortFn: sortFiltersBySortKey,
   },
   {
     title: 'Genre',
     selectionsKey: 'genre',
-    Component: MultiselectFilterWithClauses,
+    MultiselectComponent: MultiselectFilterWithClauses,
+    sortFn: sortFiltersAlphabetically,
   },
   {
     title: 'Theme',
     selectionsKey: 'theme',
-    Component: MultiselectFilterWithClauses,
+    MultiselectComponent: MultiselectFilterWithClauses,
+    sortFn: sortFiltersAlphabetically,
   },
 ];
 
@@ -57,11 +67,14 @@ const FiltersPanel = ({
 
   return (
     <div className="FiltersPanel">
-      {MULTISELECT_FILTERS_MAP.map(({ title, selectionsKey, Component }) => {
-        const filterData = filters[selectionsKey] as FilterOptionType[];
+      {MULTISELECT_FILTERS_MAP.map(
+        ({ title, selectionsKey, MultiselectComponent, sortFn }) => {
+          let filterData = filters[selectionsKey] as FilterOptionType[];
+          if (sortFn) filterData = sortFn(filterData);
+
 
         return (
-          <Component
+            <MultiselectComponent
             key={`${_.kebabCase(title)}-filter-component`}
             title={title}
             filterData={filterData}
