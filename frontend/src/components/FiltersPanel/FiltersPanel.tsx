@@ -73,6 +73,8 @@ const FiltersPanel = ({
   if (isLoading)
     return <section className="FiltersPanel">Loading filters...</section>;
 
+  const currentYear = new Date().getFullYear();
+
   return (
     <div className="FiltersPanel">
       <SliderFilter
@@ -80,6 +82,12 @@ const FiltersPanel = ({
         step={1}
         minValue={1}
         maxValue={10}
+      />
+      <SliderFilter
+        title="Air Years"
+        step={1}
+        minValue={1917}
+        maxValue={currentYear}
       />
       {MULTISELECT_FILTERS_MAP.map(
         ({ title, selectionsKey, MultiselectComponent, sortFn }) => {

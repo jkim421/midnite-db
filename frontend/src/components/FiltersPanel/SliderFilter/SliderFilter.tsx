@@ -16,7 +16,14 @@ interface RangePositionsArgs {
   minValue: number;
 }
 
-const SLIDER_WIDTH = 280;
+const HANDLE_LABEL_CHAR_ADJUSTMENT = 3;
+
+const getMarginLeftAdjustment = (value: number) => {
+  const str = value.toString();
+  const leftAdjustment = str.length * HANDLE_LABEL_CHAR_ADJUSTMENT;
+
+  return `-${leftAdjustment}px`;
+};
 
 const getRangePositions = ({
   rangeBottom,
@@ -60,6 +67,8 @@ const SliderFilter = ({ title, step, minValue, maxValue }: SliderFilter) => {
     minValue,
   });
 
+  const shouldBottomLabelFlip = rangeTopPos - rangeBottomPos < 11;
+
   return (
     <div>
       <h5 className="filter_title">{title}</h5>
@@ -99,10 +108,27 @@ const SliderFilter = ({ title, step, minValue, maxValue }: SliderFilter) => {
             className="slider-filter_track_handle"
             style={{ left: `${rangeBottomPos}%` }}
           />
+          <span
+            className="slider-filter_track_handle-value"
+            style={{
+              top: shouldBottomLabelFlip ? -24 : 24,
+              left: `calc(${rangeBottomPos}%`,
+              marginLeft: getMarginLeftAdjustment(rangeBottom),
+            }}>
+            {rangeBottom}
+          </span>
           <div
             className="slider-filter_track_handle"
             style={{ left: `${rangeTopPos}%` }}
           />
+          <span
+            className="slider-filter_track_handle-value"
+            style={{
+              left: `calc(${rangeTopPos}%`,
+              marginLeft: getMarginLeftAdjustment(rangeTop),
+            }}>
+            {rangeTop}
+          </span>
         </div>
       </div>
     </div>
