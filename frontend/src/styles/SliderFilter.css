@@ -2,12 +2,25 @@
   --range-handle-size: 16px;
 }
 
+.slider-filter_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slider-filter_header_reset {
+  font-size: 11px;
+  color: lightgray;
+  cursor: pointer;
+  margin-right: 24px;
+}
+
 .slider-filter_wrapper {
   position: relative;
   display: flex;
   align-items: center;
   height: 30px;
-  width: 240px;
+  width: 260px;
   margin-bottom: 24px;
   padding-left: 8px;
 }
@@ -94,14 +107,6 @@
   background: lightblue;
 }
 
-.slider-filter_track_handle-wrapper {
-  pointer-events: none;
-  position: absolute;
-  height: var(--range-handle-size);
-  width: var(--range-handle-size);
-  border: 1px dashed red;
-}
-
 .slider-filter_track_handle {
   /* disable pointer events so clicks go to underling range input handle */
   pointer-events: none;
@@ -116,7 +121,7 @@
 
 .slider-filter_track_handle-value {
   position: absolute;
-  top: 24px;
+  top: 20px;
   color: white;
   font-size: 11px;
 }

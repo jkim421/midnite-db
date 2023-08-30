@@ -7,6 +7,7 @@ interface SliderFilter {
   step: number;
   minValue: number;
   maxValue: number;
+  showReset?: boolean;
 }
 
 interface RangePositionsArgs {
@@ -38,7 +39,13 @@ const getRangePositions = ({
   return { rangeBottomPos, rangeTopPos };
 };
 
-const SliderFilter = ({ title, step, minValue, maxValue }: SliderFilter) => {
+const SliderFilter = ({
+  title,
+  step,
+  minValue,
+  maxValue,
+  showReset,
+}: SliderFilter) => {
   const [rangeBottom, setRangeBottom] = useState<number>(minValue);
   const [rangeTop, setRangeTop] = useState<number>(maxValue);
 
@@ -69,9 +76,25 @@ const SliderFilter = ({ title, step, minValue, maxValue }: SliderFilter) => {
 
   const shouldBottomLabelFlip = rangeTopPos - rangeBottomPos < 11;
 
+  const resetFilters = () => {
+    setRangeBottom(minValue);
+    setRangeTop(maxValue);
+  };
+
   return (
     <div>
-      <h5 className="filter_title">{title}</h5>
+      <div
+        className="slider-filter_header"
+        style={{ marginBottom: showReset ? 8 : 0 }}>
+        <h5 className="filter_title">{title}</h5>
+        {showReset && (
+          <div
+            className="slider-filter_header_reset"
+            onClick={resetFilters}>
+            Reset
+          </div>
+        )}
+      </div>
       <div className="slider-filter_wrapper">
         <div className="slider-filter_inputs_wrapper">
           <input
@@ -111,8 +134,8 @@ const SliderFilter = ({ title, step, minValue, maxValue }: SliderFilter) => {
           <span
             className="slider-filter_track_handle-value"
             style={{
-              top: shouldBottomLabelFlip ? -24 : 24,
-              left: `calc(${rangeBottomPos}%`,
+              top: shouldBottomLabelFlip ? -20 : 20,
+              left: `${rangeBottomPos}%`,
               marginLeft: getMarginLeftAdjustment(rangeBottom),
             }}>
             {rangeBottom}
@@ -124,7 +147,7 @@ const SliderFilter = ({ title, step, minValue, maxValue }: SliderFilter) => {
           <span
             className="slider-filter_track_handle-value"
             style={{
-              left: `calc(${rangeTopPos}%`,
+              left: `${rangeTopPos}%`,
               marginLeft: getMarginLeftAdjustment(rangeTop),
             }}>
             {rangeTop}
