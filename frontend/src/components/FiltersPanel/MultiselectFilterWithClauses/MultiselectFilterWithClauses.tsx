@@ -74,7 +74,7 @@ const MultiselectFilterWithClauses = ({
 
   return (
     <section>
-      <h5 className="multiselect-filter_title">{title}</h5>
+      <h5 className="filter_title">{title}</h5>
       <ClauseTags
         title={title}
         clauses={selectedValues as string[][]}

@@ -9,6 +9,7 @@ import {
 
 import MultiselectFilter from './MultiselectFilter';
 import MultiselectFilterWithClauses from './MultiselectFilterWithClauses';
+import SliderFilter from './SliderFilter';
 
 interface FiltersPanelProps {
   isLoading: boolean;
@@ -74,6 +75,12 @@ const FiltersPanel = ({
 
   return (
     <div className="FiltersPanel">
+      <SliderFilter
+        title="MAL Score"
+        step={1}
+        minValue={1}
+        maxValue={10}
+      />
       {MULTISELECT_FILTERS_MAP.map(
         ({ title, selectionsKey, MultiselectComponent, sortFn }) => {
           let filterData = filters[selectionsKey] as FilterOptionType[];

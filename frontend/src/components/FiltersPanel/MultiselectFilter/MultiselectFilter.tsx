@@ -41,7 +41,7 @@ const MultiselectFilter = ({
 
   return (
     <section>
-      <h5 className="multiselect-filter_title">{title}</h5>
+      <h5 className="filter_title">{title}</h5>
       <CheckboxColumns
         filterData={filterData}
         title={title}

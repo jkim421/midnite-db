@@ -1,0 +1,105 @@
+:root {
+  --range-handle-size: 16px;
+}
+
+.slider-filter_wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  width: 280px;
+}
+
+.slider-filter_inputs_wrapper {
+  position: absolute;
+  height: var(--range-handle-size);
+  /* width - extra half of handle width at each end */
+  width: calc(100% + var(--range-handle-size));
+  /* shift wrapper by half of handle width */
+  margin: 0 calc(var(--range-handle-size) / -2);
+}
+
+.slider-filter_input {
+  /* disable clicks on range inputs to prevent clicks to their tracks */
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  z-index: 5;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.slider-filter_input::-webkit-slider-thumb {
+  /* enable clicks only on the handles of each range input */
+  pointer-events: all;
+  appearance: none;
+  -webkit-appearance: none;
+  width: var(--range-handle-size);
+  height: var(--range-handle-size);
+  border-radius: 50%;
+  cursor: grab;
+}
+
+.slider-filter_input::-moz-range-thumb {
+  /* enable clicks only on the handles of each range input */
+  pointer-events: all;
+  appearance: none;
+  -webkit-appearance: none;
+  width: var(--range-handle-size);
+  height: var(--range-handle-size);
+  border-radius: 50%;
+  cursor: grab;
+}
+
+.slider-filter_input::-ms-thumb {
+  /* enable clicks only on the handles of each range input */
+  pointer-events: all;
+  appearance: none;
+  -webkit-appearance: none;
+  width: var(--range-handle-size);
+  height: var(--range-handle-size);
+  border-radius: 50%;
+  cursor: grab;
+}
+
+.slider-filter_track_wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: var(--range-handle-size);
+  width: 100%;
+}
+
+.slider-filter_track {
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  border-radius: 4px;
+  background: grey;
+}
+
+.slider-filter_track_inner {
+  position: absolute;
+  height: 100%;
+  border-radius: 4px;
+  background: lightblue;
+}
+
+.slider-filter_track_handle {
+  /* disable pointer events so clicks go to underling range input handle */
+  pointer-events: none;
+  position: absolute;
+  height: var(--range-handle-size);
+  width: var(--range-handle-size);
+  border-radius: 50%;
+  margin-left: calc(var(--range-handle-size) / -2);
+  z-index: 5;
+  background: lightblue;
+}
