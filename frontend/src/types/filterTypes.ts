@@ -19,13 +19,13 @@ export interface FiltersType {
 }
 
 export interface FilterSelectionsStateType {
-  [key: string]: string[] | string[][] | string;
+  [key: string]: string[] | string[][] | string | number[];
   type: string[];
   status: string[];
   rating: string[];
   demographic: string[];
-  // malScore: [number, number];
-  // yearRange: [number, number];
+  malScore: [number, number];
+  years: [number, number];
   genre: string[][];
   theme: string[][];
   studio: string;

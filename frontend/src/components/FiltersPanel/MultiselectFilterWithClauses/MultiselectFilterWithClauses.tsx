@@ -27,8 +27,6 @@ const MultiselectFilterWithClauses = ({
 
   const getOnChange =
     (value: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      e.preventDefault();
-
       const { checked } = e.target;
 
       let updatedSelections = [...currentSelections] as string[];

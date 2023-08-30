@@ -16,6 +16,7 @@ interface FiltersPanelProps {
   filters: FiltersType;
   selections: FilterSelectionsStateType;
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
+  currentYear: number;
 }
 
 const sortFiltersBySortKey = (data: FilterOptionType[]) =>
@@ -68,12 +69,11 @@ const FiltersPanel = ({
   filters,
   selections,
   setSelections,
+  currentYear,
 }: FiltersPanelProps) => {
   // TODO - build out full loading ui
   if (isLoading)
     return <section className="FiltersPanel">Loading filters...</section>;
-
-  const currentYear = new Date().getFullYear();
 
   return (
     <div className="FiltersPanel">
@@ -82,12 +82,17 @@ const FiltersPanel = ({
         step={1}
         minValue={1}
         maxValue={10}
+        selectionsKey="malScore"
+        setSelections={setSelections}
       />
       <SliderFilter
         title="Air Years"
         step={1}
         minValue={1917}
         maxValue={currentYear}
+        selectionsKey="years"
+        setSelections={setSelections}
+        showReset
       />
       {MULTISELECT_FILTERS_MAP.map(
         ({ title, selectionsKey, MultiselectComponent, sortFn }) => {

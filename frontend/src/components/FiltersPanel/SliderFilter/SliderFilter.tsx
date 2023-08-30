@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
+
+import { FilterSelectionsStateType } from '../../../types/filterTypes';
 
 import '../../../styles/SliderFilter.css';
 
@@ -8,6 +10,8 @@ interface SliderFilter {
   minValue: number;
   maxValue: number;
   showReset?: boolean;
+  selectionsKey: string;
+  setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
 }
 
 interface RangePositionsArgs {
@@ -45,6 +49,8 @@ const SliderFilter = ({
   minValue,
   maxValue,
   showReset,
+  selectionsKey,
+  setSelections,
 }: SliderFilter) => {
   const [rangeBottom, setRangeBottom] = useState<number>(minValue);
   const [rangeTop, setRangeTop] = useState<number>(maxValue);
@@ -56,6 +62,10 @@ const SliderFilter = ({
     const updatedRangeBottom = Math.min(value, rangeTop - step);
 
     setRangeBottom(updatedRangeBottom);
+    setSelections((currentFilters: FilterSelectionsStateType) => ({
+      ...currentFilters,
+      [selectionsKey]: [updatedRangeBottom, rangeTop],
+    }));
   };
 
   const onTopChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,6 +75,10 @@ const SliderFilter = ({
     const updatedRangeTop = Math.max(value, rangeBottom + step);
 
     setRangeTop(updatedRangeTop);
+    setSelections((currentFilters: FilterSelectionsStateType) => ({
+      ...currentFilters,
+      [selectionsKey]: [rangeBottom, updatedRangeTop],
+    }));
   };
 
   const { rangeBottomPos, rangeTopPos } = getRangePositions({
@@ -74,11 +88,15 @@ const SliderFilter = ({
     minValue,
   });
 
-  const shouldBottomLabelFlip = rangeTopPos - rangeBottomPos < 11;
+  const shouldBottomLabelFlip = rangeTopPos - rangeBottomPos < 10;
 
   const resetFilters = () => {
     setRangeBottom(minValue);
     setRangeTop(maxValue);
+    setSelections((currentFilters: FilterSelectionsStateType) => ({
+      ...currentFilters,
+      [selectionsKey]: [minValue, maxValue],
+    }));
   };
 
   return (

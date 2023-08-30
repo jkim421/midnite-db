@@ -16,12 +16,14 @@ interface MainProps {
 }
 
 const Main = ({ filters, isLoadingFilters }: MainProps) => {
+  const currentYear = new Date().getFullYear();
+
   const [selections, setSelections] = useState<FilterSelectionsStateType>({
     type: [],
     status: [],
     rating: [],
-    // malScore: [0, 0],
-    // yearRange: [0, 0],
+    malScore: [1, 10],
+    years: [1917, currentYear],
     genre: [],
     theme: [],
     demographic: [],
@@ -35,6 +37,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
         filters={filters}
         selections={selections}
         setSelections={setSelections}
+        currentYear={currentYear}
       />
       <section className="show-section">
         <header className="app-header">
