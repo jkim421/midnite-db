@@ -6,16 +6,20 @@ import {
   FiltersType,
   FilterSelectionsStateType,
 } from '../../types/filterTypes';
+import { ShowType } from '../../types/showTypes';
 
 import MultiselectFilter from './MultiselectFilter';
 import MultiselectFilterWithClauses from './MultiselectFilterWithClauses';
 import SliderFilter from './SliderFilter';
+
+import fetchShows from '../../utils/fetchShows';
 
 interface FiltersPanelProps {
   isLoading: boolean;
   filters: FiltersType;
   selections: FilterSelectionsStateType;
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
+  setShows: Dispatch<SetStateAction<ShowType[]>>;
   currentYear: number;
 }
 
@@ -69,18 +73,26 @@ const FiltersPanel = ({
   filters,
   selections,
   setSelections,
+  setShows,
   currentYear,
 }: FiltersPanelProps) => {
   // TODO - build out full loading ui
   if (isLoading)
     return <section className="FiltersPanel">Loading filters...</section>;
 
+  const onSubmit = async () => {
+    const shows = await fetchShows(selections);
+
+    setShows(shows);
+  };
+
   return (
     <div className="FiltersPanel">
+      <button onClick={onSubmit}>Submit Query</button>
       <SliderFilter
         title="MAL Score"
         step={1}
-        minValue={1}
+        minValue={0}
         maxValue={10}
         selectionsKey="malScore"
         setSelections={setSelections}

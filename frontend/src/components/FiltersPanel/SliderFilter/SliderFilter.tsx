@@ -145,6 +145,7 @@ const SliderFilter = ({
               }}
             />
           </div>
+
           <div
             className="slider-filter_track_handle"
             style={{ left: `${rangeBottomPos}%` }}
@@ -158,6 +159,7 @@ const SliderFilter = ({
             }}>
             {rangeBottom}
           </span>
+
           <div
             className="slider-filter_track_handle"
             style={{ left: `${rangeTopPos}%` }}

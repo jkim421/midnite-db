@@ -23,7 +23,8 @@ const MultiselectFilterWithClauses = ({
   const [currentSelections, setCurrentSelections] = useState<string[]>([]);
 
   const isMultiColumn = getIsMultiColumn(filterData);
-  const isButtonDisabled = selectedValues.length >= MAX_CLAUSES;
+  const isButtonDisabled =
+    selectedValues.length >= MAX_CLAUSES || currentSelections.length == 0;
 
   const getOnChange =
     (value: string) => (e: React.ChangeEvent<HTMLInputElement>) => {

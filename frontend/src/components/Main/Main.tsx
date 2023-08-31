@@ -5,6 +5,7 @@ import {
   FiltersType,
   FilterSelectionsStateType,
 } from '../../types/filterTypes';
+import { ShowType } from '../../types/showTypes';
 
 import FiltersPanel from '../FiltersPanel';
 
@@ -22,13 +23,15 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
     type: [],
     status: [],
     rating: [],
-    malScore: [1, 10],
+    malScore: [0, 10],
     years: [1917, currentYear],
     genre: [],
     theme: [],
     demographic: [],
     studio: '',
   });
+
+  const [shows, setShows] = useState<ShowType[]>([]);
 
   return (
     <main className="app-wrapper">
@@ -37,6 +40,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
         filters={filters}
         selections={selections}
         setSelections={setSelections}
+        setShows={setShows}
         currentYear={currentYear}
       />
       <section className="show-section">
@@ -45,6 +49,13 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
         </header>
         <div>
           <pre>{JSON.stringify(selections)}</pre>
+        </div>
+        <div>
+          {shows.map(show => (
+            <div key={show.title}>
+              <pre>{JSON.stringify(show)}</pre>
+            </div>
+          ))}
         </div>
       </section>
     </main>
