@@ -4,21 +4,22 @@
   border: 1px dashed white;
 }
 
-.filter-checkbox-group {
+.filter_title {
   margin: 8px 0px 8px 0px;
   color: white;
+  cursor: default;
 }
 
-.filter-checkbox-group-columns {
+.multiselect-filter_columns {
   display: flex;
   align-items: flex-start;
 }
 
-.filter-checkbox-column {
+.multiselect-filter_column {
   min-width: 120px;
 }
 
-.filter-checkbox-column_left {
+.multiselect-filter_column_left {
   padding-right: 18px;
 }
 
@@ -26,4 +27,16 @@
   margin-left: 12px;
   font-size: 12px;
   color: white;
+}
+
+.filter-clause-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 4px;
+  margin: 4px 0 4px;
 }

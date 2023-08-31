@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { FiltersType } from '~/types/filterTypes';
+import { FiltersType } from '../../types/filterTypes';
 
 import Main from './Main';
 
@@ -27,7 +27,7 @@ const MainContainer = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const serverUrl = process.env.REACT_APP_SERVER_URL;
+      const serverUrl = process.env.REACT_APP_SERVER_URL || '';
 
       const data = await fetchFilters(serverUrl);
 
