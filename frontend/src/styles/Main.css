@@ -9,6 +9,8 @@
 }
 
 .show-section {
-  margin: 12px;
+  width: calc(100vw - 300px);
+  padding: 12px;
+  overflow: scroll;
   color: white;
 }
