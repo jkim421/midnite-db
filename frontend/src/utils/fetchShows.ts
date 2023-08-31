@@ -1,10 +1,10 @@
 import { FilterSelectionsStateType } from '../types/filterTypes';
 
-const fetchShows = async (filters: FilterSelectionsStateType) => {
+const fetchShows = async (filters: FilterSelectionsStateType, page: number) => {
   try {
     const filterParams = encodeURIComponent(JSON.stringify(filters));
 
-    const response = await fetch(`http://localhost:8000/shows/?filters=${filterParams}`, {
+    const response = await fetch(`http://localhost:8000/shows/?filters=${filterParams}&page=${page}`, {
       method: 'get',
     })
 
@@ -14,7 +14,7 @@ const fetchShows = async (filters: FilterSelectionsStateType) => {
 
     const showsData = await response.json();
 
-    return showsData.shows;
+    return showsData;
   } catch (error) {
     console.error(error);
 

@@ -13,6 +13,7 @@ import MultiselectFilterWithClauses from './MultiselectFilterWithClauses';
 import SliderFilter from './SliderFilter';
 
 import fetchShows from '../../utils/fetchShows';
+import '../../styles/filters.css';
 
 interface FiltersPanelProps {
   isLoading: boolean;
@@ -20,6 +21,8 @@ interface FiltersPanelProps {
   selections: FilterSelectionsStateType;
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
   setShows: Dispatch<SetStateAction<ShowType[]>>;
+  setCount: Dispatch<SetStateAction<number>>;
+  page: number;
   currentYear: number;
 }
 
@@ -74,6 +77,8 @@ const FiltersPanel = ({
   selections,
   setSelections,
   setShows,
+  setCount,
+  page,
   currentYear,
 }: FiltersPanelProps) => {
   // TODO - build out full loading ui
@@ -81,9 +86,10 @@ const FiltersPanel = ({
     return <section className="FiltersPanel">Loading filters...</section>;
 
   const onSubmit = async () => {
-    const shows = await fetchShows(selections);
+    const { count, shows } = await fetchShows(selections, page);
 
     setShows(shows);
+    setCount(count);
   };
 
   return (
