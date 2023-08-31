@@ -43,4 +43,6 @@ class ShowModel(BaseModel):
 
 
 class ShowsResponse(BaseModel):
+    page: int
+    count: int
     shows: List[ShowModel]

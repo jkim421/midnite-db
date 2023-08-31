@@ -1,4 +1,5 @@
 import json
+import copy
 from motor.motor_asyncio import AsyncIOMotorCursor
 from fastapi import APIRouter, Request, Query
 
@@ -42,19 +43,42 @@ async def get_filters(request: Request):
 
 
 @router.get("/shows", response_model=ShowsResponse)
-async def get_show(request: Request, filters: str = Query(default="")):
+async def get_show(request: Request, filters: str = Query(default=""), page: int = 1):
+    page_size = 50
+
+    # generate agg pipeline from query filters
     decoded_filters = {}
 
     if filters:
       decoded_filters = json.loads(filters)
 
-    agg_pipeline = build_agg_pipeline(decoded_filters)
-    print(agg_pipeline)
     collection = request.app.mongodb["shows_jikan"]
+
+    agg_pipeline = build_agg_pipeline(decoded_filters)
+
+    # calculate total number of matching documents
+    count_pipeline = copy.deepcopy(agg_pipeline)
+    count_pipeline.append({
+      "$group": {
+          "_id": None,
+          "count": { "$sum": 1 }
+        }
+    })
+
+    count_cursor: AsyncIOMotorCursor = collection.aggregate(count_pipeline)
+    count_documents = await count_cursor.to_list(length=1)
+    query_match_count = count_documents[0]["count"]
+
+    # get paginated show results
+    agg_pipeline.append({"$skip": (page - 1) * page_size })
+    agg_pipeline.append({"$limit": page_size })
+
     cursor: AsyncIOMotorCursor = collection.aggregate(agg_pipeline)
 
     serialized_shows = [show_doc async for show_doc in cursor]
 
     return {
+      "page": page,
+      "count": query_match_count,
       "shows": serialized_shows,
     }
