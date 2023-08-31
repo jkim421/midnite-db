@@ -1,7 +1,10 @@
+import json
 from motor.motor_asyncio import AsyncIOMotorCursor
 from fastapi import APIRouter, Request, Query
 
 from models import ShowsResponse
+
+from build_agg_pipeline import build_agg_pipeline
 
 
 router = APIRouter()
@@ -40,16 +43,18 @@ async def get_filters(request: Request):
 
 @router.get("/shows", response_model=ShowsResponse)
 async def get_show(request: Request, filters: str = Query(default="")):
-    # decoded_filters = {}
+    decoded_filters = {}
 
-    # if filters:
-    #   decoded_filters = json.loads(filters)
+    if filters:
+      decoded_filters = json.loads(filters)
 
+    agg_pipeline = build_agg_pipeline(decoded_filters)
+    print(agg_pipeline)
     collection = request.app.mongodb["shows_jikan"]
-    cursor: AsyncIOMotorCursor = collection.find({}, { "_id": 0 }).limit(10)
+    cursor: AsyncIOMotorCursor = collection.aggregate(agg_pipeline)
 
     serialized_shows = [show_doc async for show_doc in cursor]
-    
+
     return {
       "shows": serialized_shows,
     }
