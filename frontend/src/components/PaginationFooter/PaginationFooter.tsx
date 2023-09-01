@@ -1,6 +1,6 @@
 import React, { useState, Dispatch, SetStateAction, ChangeEvent } from 'react';
 
-import { LeftArrow, RightArrow } from './icons';
+import { LeftArrow, RightArrow } from '../icons';
 
 import '../../styles/PaginationFooter.css';
 

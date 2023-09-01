@@ -1,6 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
+import { CloseIcon } from '../../icons';
+
 interface ClauseTagsProps {
   title: string;
   clauses: string[][];
@@ -30,10 +32,9 @@ const ClauseTags = ({ clauses, title, getRemoveClause }: ClauseTagsProps) => {
         return (
           <div
             key={key}
-            className="filter-clause-tag"
-            onClick={removeClauseFn}>
+            className="filter-clause-tag">
             <span>{content}</span>
-            <span>x</span>
+            <CloseIcon onClick={removeClauseFn} />
           </div>
         );
       })}
