@@ -13,12 +13,15 @@
 .pagination-footer_arrow {
   display: flex;
   align-items: center;
-  margin-left: 12px;
   padding: 2px;
   cursor: pointer;
 }
 
+.pagination-footer_arrow_right {
+  margin: 0 24px 0 12px;
+}
+
 .pagination-footer_input {
-  width: 36px;
+  width: 40px;
   margin: 0 4px;
 }

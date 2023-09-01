@@ -12,7 +12,6 @@ import MultiselectFilter from './MultiselectFilter';
 import MultiselectFilterWithClauses from './MultiselectFilterWithClauses';
 import SliderFilter from './SliderFilter';
 
-import fetchShows from '../../utils/fetchShows';
 import '../../styles/filters.css';
 
 interface FiltersPanelProps {
@@ -20,9 +19,8 @@ interface FiltersPanelProps {
   filters: FiltersType;
   selections: FilterSelectionsStateType;
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
-  setShowsData: Dispatch<SetStateAction<ShowStateType>>;
-  page: number;
   currentYear: number;
+  fetchData: () => void;
 }
 
 const sortFiltersBySortKey = (data: FilterOptionType[]) =>
@@ -75,23 +73,15 @@ const FiltersPanel = ({
   filters,
   selections,
   setSelections,
-  setShowsData,
-  page,
   currentYear,
+  fetchData,
 }: FiltersPanelProps) => {
   // TODO - build out full loading ui
   if (isLoading)
     return <section className="FiltersPanel">Loading filters...</section>;
 
   const onSubmit = async () => {
-    setShowsData(prevState => ({
-      ...prevState,
-      loading: true,
-    }));
-
-    const { count, shows } = await fetchShows(selections, page);
-
-    setShowsData({ loading: false, count, shows });
+    fetchData();
   };
 
   return (

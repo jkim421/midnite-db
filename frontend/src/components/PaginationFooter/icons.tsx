@@ -1,5 +1,13 @@
-export const LeftArrow = () => (
-  <div className="pagination-footer_arrow">
+import React from 'react';
+
+interface ArrowProps {
+  onClick: () => void;
+}
+
+export const LeftArrow = ({ onClick }: ArrowProps) => (
+  <div
+    className="pagination-footer_arrow"
+    onClick={onClick}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height="1em"
@@ -9,8 +17,10 @@ export const LeftArrow = () => (
   </div>
 );
 
-export const RightArrow = () => (
-  <div className="pagination-footer_arrow">
+export const RightArrow = ({ onClick }: ArrowProps) => (
+  <div
+    className="pagination-footer_arrow pagination-footer_arrow_right"
+    onClick={onClick}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height="1em"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import {
   FiltersType,
@@ -10,6 +10,7 @@ import { ShowStateType } from '../../types/showTypes';
 import FiltersPanel from '../FiltersPanel';
 import PaginationFooter from '../PaginationFooter';
 
+import fetchShows from '../../utils/fetchShows';
 import '../../styles/Main.css';
 
 interface MainProps {
@@ -39,6 +40,22 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   });
   const [page, setPage] = useState<number>(1);
 
+  const fetchData = async () => {
+    setShowsData(prevState => ({
+      ...prevState,
+      loading: true,
+    }));
+
+    const { count, shows } = await fetchShows(selections, page);
+
+    setShowsData({ loading: false, count, shows });
+  };
+
+  useEffect(() => {
+    // data is fetched after initial render here
+    fetchData();
+  }, [page]);
+
   const showFooter = showsData.shows.length > 0;
   const isLoadingShows = showsData.loading;
 
@@ -49,9 +66,8 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
         filters={filters}
         selections={selections}
         setSelections={setSelections}
-        setShowsData={setShowsData}
-        page={page}
         currentYear={currentYear}
+        fetchData={fetchData}
       />
       <section className="show-section">
         <header className="app-header">

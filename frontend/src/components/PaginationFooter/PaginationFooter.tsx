@@ -13,31 +13,55 @@ interface PaginationFooterProps {
 const PAGE_SIZE = 50;
 
 const PaginationFooter = ({ page, count, setPage }: PaginationFooterProps) => {
-  const [pageInput, setPageInput] = useState<number>(page);
+  const [pageInput, setPageInput] = useState<number | undefined>(undefined);
   const totalPages = Math.ceil(count / PAGE_SIZE);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handlePageInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     const page = parseInt(value);
 
     setPageInput(page);
   };
 
+  const handlePageInputSubmission = () => {
+    if (pageInput) {
+      setPage(pageInput);
+    }
+  };
+
+  const handleInputEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handlePageInputSubmission();
+    }
+  };
+
+  const handleArrowClick = (direction: string) => {
+    if (direction === 'prev') {
+      if (page === 0) return;
+
+      setPage(currentPage => currentPage - 1);
+    } else {
+      setPage(currentPage => currentPage + 1);
+    }
+  };
+
   return (
     <div className="pagination-footer_wrapper">
-      <span>Page</span>
+      <span style={{ minWidth: 120 }}>
+        Page {page} / {totalPages}
+      </span>
+      <LeftArrow onClick={() => handleArrowClick('prev')} />
+      <RightArrow onClick={() => handleArrowClick('next')} />
       <input
         className="pagination-footer_input"
         type="number"
         value={pageInput}
         min={1}
         max={totalPages}
-        onChange={onChange}
-        placeholder="Go to page"
+        onChange={handlePageInput}
+        onKeyDown={handleInputEnter}
       />
-      <span>of {totalPages}</span>
-      <LeftArrow />
-      <RightArrow />
+      <button onClick={handlePageInputSubmission}>Go to page</button>
     </div>
   );
 };
