@@ -12,8 +12,8 @@ export interface FiltersType {
   type: FilterOptionType[];
   status: FilterOptionType[];
   rating: FilterOptionType[];
-  genre: FilterOptionType[];
   demographic: FilterOptionType[];
+  genre: FilterOptionType[];
   theme: FilterOptionType[];
   studios: string[];
 }
@@ -27,7 +27,9 @@ export interface FilterSelectionsStateType {
   malScore: [number, number];
   years: [number, number];
   genre: string[][];
+  currentGenre: string[];
   theme: string[][];
+  currentTheme: string[];
   studio: string;
 }
 
@@ -37,6 +39,11 @@ export interface MultiselectFilterProps {
   selectionsKey: string;
   selectedValues: string[] | string[][];
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
+}
+
+export interface MultiselectFilterWithClausesProps extends MultiselectFilterProps {
+  currentSelectionsKey: string;
+  currentSelections: string[];
 }
 
 export interface CheckboxColumnsProps {

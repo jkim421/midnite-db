@@ -18,6 +18,28 @@ interface MainProps {
   filters: FiltersType;
 }
 
+const getFinalSelections = (selections: FilterSelectionsStateType) => {
+  // if no clauses selected, use current selections as "first" clause
+  const finalSelections = { ...selections };
+  const { currentGenre, currentTheme } = selections;
+
+  const useCurrentGenre =
+    currentGenre.length > 0 && selections.genre.length === 0;
+
+  const useCurrentTheme =
+    currentTheme.length > 0 && selections.theme.length === 0;
+
+  if (useCurrentGenre) {
+    finalSelections.genre = [currentGenre];
+  }
+
+  if (useCurrentTheme) {
+    finalSelections.theme = [currentTheme];
+  }
+
+  return finalSelections;
+};
+
 const Main = ({ filters, isLoadingFilters }: MainProps) => {
   const currentYear = new Date().getFullYear();
 
@@ -27,9 +49,11 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
     rating: [],
     malScore: [0, 10],
     years: [1917, currentYear],
-    genre: [],
-    theme: [],
     demographic: [],
+    genre: [],
+    currentGenre: [],
+    theme: [],
+    currentTheme: [],
     studio: '',
   });
 
@@ -38,6 +62,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
     count: 0,
     shows: [],
   });
+
   const [page, setPage] = useState<number>(1);
 
   const fetchData = async () => {
@@ -46,7 +71,9 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
       loading: true,
     }));
 
-    const { count, shows } = await fetchShows(selections, page);
+    const finalSelections = getFinalSelections(selections);
+
+    const { count, shows } = await fetchShows(finalSelections, page);
 
     setShowsData({ loading: false, count, shows });
   };

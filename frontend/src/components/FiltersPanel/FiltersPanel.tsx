@@ -6,7 +6,6 @@ import {
   FiltersType,
   FilterSelectionsStateType,
 } from '../../types/filterTypes';
-import { ShowStateType } from '../../types/showTypes';
 
 import MultiselectFilter from './MultiselectFilter';
 import MultiselectFilterWithClauses from './MultiselectFilterWithClauses';
@@ -57,12 +56,14 @@ const MULTISELECT_FILTERS_MAP = [
   {
     title: 'Genre',
     selectionsKey: 'genre',
+    currentSelectionsKey: 'currentGenre',
     MultiselectComponent: MultiselectFilterWithClauses,
     sortFn: sortFiltersAlphabetically,
   },
   {
     title: 'Theme',
     selectionsKey: 'theme',
+    currentSelectionsKey: 'currentTheme',
     MultiselectComponent: MultiselectFilterWithClauses,
     sortFn: sortFiltersAlphabetically,
   },
@@ -105,9 +106,19 @@ const FiltersPanel = ({
         showReset
       />
       {MULTISELECT_FILTERS_MAP.map(
-        ({ title, selectionsKey, MultiselectComponent, sortFn }) => {
+        ({
+          title,
+          selectionsKey,
+          currentSelectionsKey = '',
+          MultiselectComponent,
+          sortFn,
+        }) => {
           let filterData = filters[selectionsKey] as FilterOptionType[];
           if (sortFn) filterData = sortFn(filterData);
+
+          const currentSelections = currentSelectionsKey
+            ? selections[currentSelectionsKey]
+            : [];
 
           const selectedValues = selections[selectionsKey] as
             | string[]
@@ -119,6 +130,8 @@ const FiltersPanel = ({
               title={title}
               filterData={filterData}
               selectionsKey={selectionsKey}
+              currentSelections={currentSelections as string[]}
+              currentSelectionsKey={currentSelectionsKey}
               selectedValues={selectedValues}
               setSelections={setSelections}
             />

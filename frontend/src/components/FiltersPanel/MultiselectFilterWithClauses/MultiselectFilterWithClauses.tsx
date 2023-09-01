@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
-  MultiselectFilterProps,
+  MultiselectFilterWithClausesProps,
   FilterSelectionsStateType,
 } from '../../../types/filterTypes';
 
@@ -19,9 +19,9 @@ const MultiselectFilterWithClauses = ({
   selectionsKey,
   selectedValues,
   setSelections,
-}: MultiselectFilterProps) => {
-  const [currentSelections, setCurrentSelections] = useState<string[]>([]);
-
+  currentSelections,
+  currentSelectionsKey,
+}: MultiselectFilterWithClausesProps) => {
   const isMultiColumn = getIsMultiColumn(filterData);
   const isButtonDisabled =
     selectedValues.length >= MAX_CLAUSES || currentSelections.length == 0;
@@ -40,7 +40,10 @@ const MultiselectFilterWithClauses = ({
         );
       }
 
-      setCurrentSelections(updatedSelections.sort());
+      setSelections((currentFilters: FilterSelectionsStateType) => ({
+        ...currentFilters,
+        [currentSelectionsKey]: updatedSelections.sort(),
+      }));
     };
 
   const onSaveBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -53,9 +56,8 @@ const MultiselectFilterWithClauses = ({
     setSelections((currentFilters: FilterSelectionsStateType) => ({
       ...currentFilters,
       [selectionsKey]: updatedClauses,
+      [currentSelectionsKey]: [],
     }));
-
-    setCurrentSelections([]);
   };
 
   const getRemoveClause =
@@ -89,7 +91,7 @@ const MultiselectFilterWithClauses = ({
         title={title}
         isMultiColumn={isMultiColumn}
         getOnChange={getOnChange}
-        selectedValues={currentSelections as string[]}
+        selectedValues={currentSelections}
       />
     </section>
   );
