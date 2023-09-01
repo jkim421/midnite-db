@@ -67,11 +67,6 @@ async def get_show(request: Request, filters: str = Query(default=""), page: int
 
     count_cursor: AsyncIOMotorCursor = collection.aggregate(count_pipeline)
     count_documents = await count_cursor.to_list(length=1)
-    print("----------------------------------------")
-    print(count_pipeline)
-    print("----------------------------------------")
-    print(count_documents)
-    print("----------------------------------------")
     query_match_count = 0
 
     if len(count_documents) > 0:
