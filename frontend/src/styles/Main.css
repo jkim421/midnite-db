@@ -9,9 +9,10 @@
 }
 
 .show-section {
+  position: relative;
   height: 100vh;
   width: calc(100vw - 300px);
-  padding: 12px;
+  padding: 12px 12px 48px;
   box-sizing: border-box;
   overflow: scroll;
   color: white;

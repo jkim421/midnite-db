@@ -67,7 +67,15 @@ async def get_show(request: Request, filters: str = Query(default=""), page: int
 
     count_cursor: AsyncIOMotorCursor = collection.aggregate(count_pipeline)
     count_documents = await count_cursor.to_list(length=1)
-    query_match_count = count_documents[0]["count"]
+    print("----------------------------------------")
+    print(count_pipeline)
+    print("----------------------------------------")
+    print(count_documents)
+    print("----------------------------------------")
+    query_match_count = 0
+
+    if len(count_documents) > 0:
+      query_match_count = count_documents[0]["count"]
 
     # get paginated show results
     agg_pipeline.append({"$skip": (page - 1) * page_size })

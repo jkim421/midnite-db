@@ -6,7 +6,7 @@ import {
   FiltersType,
   FilterSelectionsStateType,
 } from '../../types/filterTypes';
-import { ShowType } from '../../types/showTypes';
+import { ShowStateType } from '../../types/showTypes';
 
 import MultiselectFilter from './MultiselectFilter';
 import MultiselectFilterWithClauses from './MultiselectFilterWithClauses';
@@ -20,8 +20,7 @@ interface FiltersPanelProps {
   filters: FiltersType;
   selections: FilterSelectionsStateType;
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
-  setShows: Dispatch<SetStateAction<ShowType[]>>;
-  setCount: Dispatch<SetStateAction<number>>;
+  setShowsData: Dispatch<SetStateAction<ShowStateType>>;
   page: number;
   currentYear: number;
 }
@@ -76,8 +75,7 @@ const FiltersPanel = ({
   filters,
   selections,
   setSelections,
-  setShows,
-  setCount,
+  setShowsData,
   page,
   currentYear,
 }: FiltersPanelProps) => {
@@ -86,10 +84,14 @@ const FiltersPanel = ({
     return <section className="FiltersPanel">Loading filters...</section>;
 
   const onSubmit = async () => {
+    setShowsData(prevState => ({
+      ...prevState,
+      loading: true,
+    }));
+
     const { count, shows } = await fetchShows(selections, page);
 
-    setShows(shows);
-    setCount(count);
+    setShowsData({ loading: false, count, shows });
   };
 
   return (

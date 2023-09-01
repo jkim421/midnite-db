@@ -1,0 +1,24 @@
+.pagination-footer_wrapper {
+  position: absolute;
+  left: 320px;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  width: calc(100vw - 320px);
+  padding:  12px;
+
+  background: lightgray;
+}
+
+.pagination-footer_arrow {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.pagination-footer_input {
+  width: 36px;
+  margin: 0 4px;
+}

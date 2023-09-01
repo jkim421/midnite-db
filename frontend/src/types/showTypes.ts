@@ -36,3 +36,9 @@ export interface ShowType {
   demographics: string[];
   years: ShowYears
 }
+
+export interface ShowStateType {
+  loading: boolean;
+  count: number;
+  shows: ShowType[];
+}

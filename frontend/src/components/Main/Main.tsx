@@ -5,9 +5,10 @@ import {
   FiltersType,
   FilterSelectionsStateType,
 } from '../../types/filterTypes';
-import { ShowType } from '../../types/showTypes';
+import { ShowStateType } from '../../types/showTypes';
 
 import FiltersPanel from '../FiltersPanel';
+import PaginationFooter from '../PaginationFooter';
 
 import '../../styles/Main.css';
 
@@ -31,9 +32,15 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
     studio: '',
   });
 
-  const [shows, setShows] = useState<ShowType[]>([]);
+  const [showsData, setShowsData] = useState<ShowStateType>({
+    loading: false,
+    count: 0,
+    shows: [],
+  });
   const [page, setPage] = useState<number>(1);
-  const [count, setCount] = useState<number>(0);
+
+  const showFooter = showsData.shows.length > 0;
+  const isLoadingShows = showsData.loading;
 
   return (
     <main className="app-wrapper">
@@ -42,8 +49,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
         filters={filters}
         selections={selections}
         setSelections={setSelections}
-        setShows={setShows}
-        setCount={setCount}
+        setShowsData={setShowsData}
         page={page}
         currentYear={currentYear}
       />
@@ -55,15 +61,26 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
           <pre>{JSON.stringify(selections)}</pre>
         </div>
         <h4>SHOWS</h4>
-        <h5>Show Count: {count}</h5>
-        <div>
-          {shows.map(show => (
-            <div key={show.title}>
-              <pre>{JSON.stringify(show)}</pre>
-            </div>
-          ))}
-        </div>
+        <h5>Show Count: {showsData.count}</h5>
+        {isLoadingShows ? (
+          'Loading Shows...'
+        ) : (
+          <div>
+            {showsData.shows.map(show => (
+              <div key={show.title}>
+                <pre>{JSON.stringify(show)}</pre>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
+      {showFooter && (
+        <PaginationFooter
+          page={page}
+          count={showsData.count}
+          setPage={setPage}
+        />
+      )}
     </main>
   );
 };
