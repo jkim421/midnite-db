@@ -14,7 +14,8 @@ import SliderFilter from './SliderFilter';
 import '../../styles/filters.css';
 
 interface FiltersPanelProps {
-  isLoading: boolean;
+  isLoadingFilters: boolean;
+  isLoadingShows: boolean;
   filters: FiltersType;
   selections: FilterSelectionsStateType;
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
@@ -70,7 +71,8 @@ const MULTISELECT_FILTERS_MAP = [
 ];
 
 const FiltersPanel = ({
-  isLoading,
+  isLoadingFilters,
+  isLoadingShows,
   filters,
   selections,
   setSelections,
@@ -78,7 +80,7 @@ const FiltersPanel = ({
   fetchData,
 }: FiltersPanelProps) => {
   // TODO - build out full loading ui
-  if (isLoading)
+  if (isLoadingFilters)
     return <section className="FiltersPanel">Loading filters...</section>;
 
   const onSubmit = async () => {
@@ -87,7 +89,11 @@ const FiltersPanel = ({
 
   return (
     <div className="FiltersPanel">
-      <button onClick={onSubmit}>Submit Query</button>
+      <button
+        onClick={onSubmit}
+        disabled={isLoadingShows}>
+        Submit Query
+      </button>
       <SliderFilter
         title="MAL Score"
         step={1}

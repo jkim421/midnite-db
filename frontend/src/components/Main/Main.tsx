@@ -89,7 +89,8 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   return (
     <main className="app-wrapper">
       <FiltersPanel
-        isLoading={isLoadingFilters}
+        isLoadingFilters={isLoadingFilters}
+        isLoadingShows={isLoadingShows}
         filters={filters}
         selections={selections}
         setSelections={setSelections}

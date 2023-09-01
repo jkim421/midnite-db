@@ -84,7 +84,7 @@ const MultiselectFilterWithClauses = ({
       <button
         onClick={onSaveBtnClick}
         disabled={isButtonDisabled}>
-        Save Clause
+        Save {title} Set
       </button>
       <CheckboxColumns
         filterData={filterData}

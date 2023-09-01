@@ -30,17 +30,21 @@ const PaginationFooter = ({ page, count, setPage }: PaginationFooterProps) => {
   };
 
   const handleInputEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (pageInput && e.key === 'Enter') {
+      if (pageInput < 1 || pageInput > totalPages) return;
+
       handlePageInputSubmission();
     }
   };
 
   const handleArrowClick = (direction: string) => {
     if (direction === 'prev') {
-      if (page === 0) return;
+      if (page <= 1) return;
 
       setPage(currentPage => currentPage - 1);
     } else {
+      if (page + 1 > totalPages) return;
+
       setPage(currentPage => currentPage + 1);
     }
   };
