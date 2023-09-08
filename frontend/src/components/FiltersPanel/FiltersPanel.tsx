@@ -144,7 +144,7 @@ const FiltersPanel = ({
           );
         },
       )}
-      <h5>{`Studios: ${filters.studios.length}`}</h5>
+      {/* <h5>{`Studios: ${filters.studios.length}`}</h5> */}
     </div>
   );
 };

@@ -8,7 +8,7 @@ interface ShowImages {
     large: string
 }
 
-interface ShowYears {
+export interface ShowYears {
   start?: number;
   end?: number;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 import {
+  FilterOptionType,
   FiltersType,
   FilterSelectionsStateType,
 } from '../../types/filterTypes';
@@ -9,6 +10,7 @@ import { ShowStateType } from '../../types/showTypes';
 
 import FiltersPanel from '../FiltersPanel';
 import PaginationFooter from '../PaginationFooter';
+import ShowCard from '../ShowCard';
 
 import fetchShows from '../../utils/fetchShows';
 import '../../styles/Main.css';
@@ -39,6 +41,18 @@ const getFinalSelections = (selections: FilterSelectionsStateType) => {
 
   return finalSelections;
 };
+
+const getRatingsMap = (ratings: FilterOptionType[] = []) =>
+  ratings.reduce(
+    (acc, rating) => {
+      const { value, alias = '' } = rating;
+
+      acc[value] = alias;
+
+      return acc;
+    },
+    {} as { [key: string]: string },
+  );
 
 const Main = ({ filters, isLoadingFilters }: MainProps) => {
   const currentYear = new Date().getFullYear();
@@ -86,6 +100,8 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   const showFooter = showsData.shows.length > 0;
   const isLoadingShows = showsData.loading;
 
+  const ratingsMap = getRatingsMap(filters.rating as FilterOptionType[]);
+
   return (
     <main className="app-wrapper">
       <FiltersPanel
@@ -97,34 +113,35 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
         currentYear={currentYear}
         fetchData={fetchData}
       />
-      <section className="show-section">
+      <div className="content-wrapper">
         <header className="app-header">
           <h3>midnite-db</h3>
         </header>
-        <div>
-          <pre>{JSON.stringify(selections)}</pre>
-        </div>
-        <h4>SHOWS</h4>
-        <h5>Show Count: {showsData.count}</h5>
-        {isLoadingShows ? (
-          'Loading Shows...'
-        ) : (
-          <div>
-            {showsData.shows.map(show => (
-              <div key={show.title}>
-                <pre>{JSON.stringify(show)}</pre>
-              </div>
-            ))}
-          </div>
+        <section className="show-section">
+          <h4>SHOWS</h4>
+          <h5>Show Count: {showsData.count}</h5>
+          {isLoadingShows ? (
+            'Loading Shows...'
+          ) : (
+            <div>
+              {showsData.shows.map(show => (
+                <ShowCard
+                  key={`${show.mal_id}_show-card`}
+                  show={show}
+                  ratingsMap={ratingsMap}
+                />
+              ))}
+            </div>
+          )}
+        </section>
+        {showFooter && (
+          <PaginationFooter
+            page={page}
+            count={showsData.count}
+            setPage={setPage}
+          />
         )}
-      </section>
-      {showFooter && (
-        <PaginationFooter
-          page={page}
-          count={showsData.count}
-          setPage={setPage}
-        />
-      )}
+      </div>
     </main>
   );
 };
