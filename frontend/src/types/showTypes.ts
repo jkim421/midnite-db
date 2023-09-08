@@ -1,4 +1,4 @@
-interface ShowTitles {
+export interface ShowTitles {
   default: string;
   english?: string;
 }

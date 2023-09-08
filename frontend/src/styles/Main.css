@@ -24,6 +24,7 @@
 .show-section {
   position: relative;
   height: calc(100vh - 72px - 48px);
+  width: calc(100vw - 320px);
   padding: 12px;
   box-sizing: border-box;
   overflow-y: scroll;

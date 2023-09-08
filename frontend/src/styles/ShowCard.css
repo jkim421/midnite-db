@@ -1,5 +1,6 @@
 .show-card_wrapper {
-  width: 840px;
+  position: relative;
+  max-width: 840px;
   margin: 12px 12px 24px;
   padding: 24px;
   border-radius: 4px;
@@ -8,6 +9,7 @@
 
 .show-card_details-row {
   display: flex;
+  width: calc(100% - 120px);
 }
 
 .show-card_details-row_image-wrapper {
@@ -65,4 +67,24 @@
 
 .show-card_details-row_info_type-rating {
   margin-top: 12px;
+}
+
+.show-card_details-row_mal-metrics {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 12px 24px;
+  box-sizing: border-box;
+  border-radius: 0 3px;
+  background: #2e51a2;
+  text-align: center;
+}
+
+.show-card_details-row_mal-metrics_score {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.show-card_details-row_mal-metrics_users {
+  font-size: 11px;
 }
