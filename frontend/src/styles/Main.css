@@ -1,19 +1,30 @@
 .app-wrapper {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
 }
 
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: calc(100vw - 320px);
+}
+
 .app-header {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 12px;
+  box-sizing: border-box;
   color: white;
+  border: 1px dashed white;
 }
 
 .show-section {
   position: relative;
-  height: 100vh;
-  width: calc(100vw - 300px);
-  padding: 12px 12px 48px;
+  padding: 12px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-y: scroll;
   color: white;
 }
