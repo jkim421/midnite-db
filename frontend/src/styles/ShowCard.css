@@ -11,17 +11,19 @@
 
 .show-card_details-row {
   display: flex;
-  width: calc(100% - 120px);
+  width: calc(100% - 124px);
 }
 
 .show-card_details-row_image-wrapper {
   position: relative;
   max-height: 192px;
+  min-width: 136px;
   overflow: hidden;
 }
 
 .show-card_details-row_image {
   max-height: 192px;
+  min-width: 136px;
   box-sizing: border-box;
 }
 
@@ -45,7 +47,9 @@
   bottom: 0;
 }
 
-.show-card_details-row_info {
+.show-card_details-row_wrapper {
+  display: flex;
+  flex-direction: column;
   margin-left: 24px;
 }
 
@@ -59,15 +63,7 @@
   font-style: italic;
 }
 
-.show-card_details-row_info_years {
-  margin-top: 12px;
-}
-
-.show-card_details-row_info_type-episodes {
-  margin-top: 12px;
-}
-
-.show-card_details-row_info_type-rating {
+.show-card_details-row_info-item {
   margin-top: 12px;
 }
 

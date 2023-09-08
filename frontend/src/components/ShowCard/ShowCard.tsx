@@ -42,28 +42,26 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
 
   return (
     <div className="show-card_wrapper">
-      <div>
-        <div className="show-card_details-row">
-          <ShowCardImage
-            images={images}
-            url={url}
+      <div className="show-card_details-row">
+        <ShowCardImage
+          images={images}
+          url={url}
+        />
+        <div className="show-card_details-row_wrapper">
+          <ShowCardDetails
+            title={title}
+            titles={titles}
+            years={years}
+            type={type}
+            episodes={episodes}
+            rating={ratingAlias}
           />
-          <div className="show-card_details-row_info">
-            <ShowCardDetails
-              title={title}
-              titles={titles}
-              years={years}
-              type={type}
-              episodes={episodes}
-              rating={ratingAlias}
-            />
-            <ShowCardMalMetrics
-              score={score}
-              scoringUsers={scored_by}
-            />
-          </div>
         </div>
       </div>
+      <ShowCardMalMetrics
+        score={score}
+        scoringUsers={scored_by}
+      />
     </div>
   );
 };

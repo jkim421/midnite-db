@@ -7,18 +7,29 @@ interface ShowCardMalMetricsProps {
   scoringUsers?: number;
 }
 
+const formatScore = (score: number) => {
+  if (!score) {
+    return <span style={{ fontSize: 20 }}>Unscored</span>;
+  }
+
+  return (
+    <>
+      <span>{score.toFixed(2)}</span>
+      <span style={{ fontSize: 14 }}>&nbsp;/ 10</span>
+    </>
+  );
+};
+
 const ShowCardMalMetrics = ({
-  score,
+  score = 0,
   scoringUsers,
 }: ShowCardMalMetricsProps) => {
-  const formattedScore = score ? score.toFixed(2) : 'N/A';
   const formattedUsers = scoringUsers?.toLocaleString();
 
   return (
     <div className="show-card_details-row_mal-metrics">
       <div className="show-card_details-row_mal-metrics_score">
-        <span>{formattedScore}</span>
-        <span style={{ fontSize: 14 }}>&nbsp;/ 10</span>
+        {formatScore(score)}
       </div>
       {scoringUsers && (
         <div className="show-card_details-row_mal-metrics_users">

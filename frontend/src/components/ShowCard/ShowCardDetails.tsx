@@ -42,7 +42,7 @@ const ShowCardDetails = ({
     titles && titles.english && titles.english !== defaultTitle;
 
   return (
-    <>
+    <div>
       <div className="show-card_details-row_info_default-title">
         {defaultTitle}
       </div>
@@ -51,14 +51,14 @@ const ShowCardDetails = ({
           {titles.english}
         </div>
       )}
-      <div className="show-card_details-row_info_years">
+      <div className="show-card_details-row_info-item">
         {formatYears(years)}
       </div>
-      <div className="show-card_details-row_info_type-episodes">
+      <div className="show-card_details-row_info-item">
         {formatTypeEpisodes(type, episodes)}
       </div>
-      <div className="show-card_details-row_info_type-rating">{rating}</div>
-    </>
+      <div className="show-card_details-row_info-item">{rating}</div>
+    </div>
   );
 };
 
