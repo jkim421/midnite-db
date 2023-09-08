@@ -3,7 +3,7 @@ interface ShowTitles {
   english?: string;
 }
 
-interface ShowImages {
+export interface ShowImages {
     small: string
     large: string
 }

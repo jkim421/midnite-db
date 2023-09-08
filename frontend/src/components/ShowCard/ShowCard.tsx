@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { ShowType, ShowYears } from '../../types/showTypes';
+
+import ShowCardImage from './ShowCardImage';
 
 import '../../styles/ShowCard.css';
 
@@ -60,19 +62,10 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
     <div className="show-card_wrapper">
       <div>
         <div className="show-card_details-row">
-          {/* image */}
-          <div className="show-card_details-row_image-wrapper">
-            <a
-              href={url}
-              target="blank">
-              <img
-                className="show-card_details-row_image"
-                src={images.small}></img>
-            </a>
-            <div className="show-card_details-row_image-tooltip">
-              Visit MAL Page
-            </div>
-          </div>
+          <ShowCardImage
+            images={images}
+            url={url}
+          />
           {/* general info */}
           <div className="show-card_details-row_info">
             <div className="show-card_details-row_info_default-title">
