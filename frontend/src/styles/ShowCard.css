@@ -1,5 +1,4 @@
 .show-card_wrapper {
-  position: relative;
   width: 80%;
   max-width: 840px;
   min-width: 480px;
@@ -11,7 +10,6 @@
 
 .show-card_details-row {
   display: flex;
-  width: calc(100% - 124px);
 }
 
 .show-card_details-row_image-wrapper {
@@ -47,10 +45,19 @@
   bottom: 0;
 }
 
-.show-card_details-row_wrapper {
+.show-card_details-row_info {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   margin-left: 24px;
+}
+
+.show-card_details-row_info_title-stats {
+  display: flex;
+}
+
+.show-card_details-row_info_title-wrapper {
+  flex-grow: 1;
 }
 
 .show-card_details-row_info_default-title {
@@ -68,10 +75,9 @@
 }
 
 .show-card_details-row_mal-metrics {
-  position: absolute;
-  top: 0;
-  right: 0;
+  height: 72px;
   width: 124px;
+  margin: -24px -24px 0 0;
   padding: 12px;
   box-sizing: border-box;
   border-radius: 0 3px;

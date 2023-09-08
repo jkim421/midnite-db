@@ -4,7 +4,7 @@ import { ShowType } from '../../types/showTypes';
 
 import ShowCardImage from './ShowCardImage';
 import ShowCardDetails from './ShowCardDetails';
-import ShowCardMalMetrics from './ShowCardMalMetrics';
+import ShowCardTitleStats from './ShowCardTitleStats';
 
 import '../../styles/ShowCard.css';
 
@@ -47,10 +47,14 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
           images={images}
           url={url}
         />
-        <div className="show-card_details-row_wrapper">
-          <ShowCardDetails
+        <div className="show-card_details-row_info">
+          <ShowCardTitleStats
             title={title}
             titles={titles}
+            score={score}
+            scoringUsers={scored_by}
+          />
+          <ShowCardDetails
             years={years}
             type={type}
             episodes={episodes}
@@ -58,10 +62,6 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
           />
         </div>
       </div>
-      <ShowCardMalMetrics
-        score={score}
-        scoringUsers={scored_by}
-      />
     </div>
   );
 };

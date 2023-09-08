@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { ShowTitles, ShowYears } from '../../types/showTypes';
+import { ShowYears } from '../../types/showTypes';
 
 import '../../styles/ShowCard.css';
 
 interface ShowCardDetailsProps {
-  title: string;
-  titles?: ShowTitles;
   years: ShowYears;
   type: string;
   episodes: number;
@@ -17,7 +15,7 @@ const formatYears = (years: ShowYears) => {
   const { start, end } = years;
 
   if (!start) return;
-  else if (!end) return start.toString();
+  else if (!end || start == end) return start.toString();
   else return `${start} - ${end}`;
 };
 
@@ -30,27 +28,13 @@ const formatTypeEpisodes = (type: string, episodes: number) => {
 };
 
 const ShowCardDetails = ({
-  title,
-  titles,
   years,
   type,
   episodes,
-  rating,
+  rating = '',
 }: ShowCardDetailsProps) => {
-  const defaultTitle = titles ? titles.default : title;
-  const showEngTitle =
-    titles && titles.english && titles.english !== defaultTitle;
-
   return (
     <div>
-      <div className="show-card_details-row_info_default-title">
-        {defaultTitle}
-      </div>
-      {showEngTitle && (
-        <div className="show-card_details-row_info_english-title">
-          {titles.english}
-        </div>
-      )}
       <div className="show-card_details-row_info-item">
         {formatYears(years)}
       </div>
