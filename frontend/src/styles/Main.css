@@ -30,3 +30,9 @@
   overflow-y: scroll;
   color: white;
 }
+
+.show-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

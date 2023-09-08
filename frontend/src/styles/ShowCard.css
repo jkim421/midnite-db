@@ -1,6 +1,8 @@
 .show-card_wrapper {
   position: relative;
+  width: 80%;
   max-width: 840px;
+  min-width: 480px;
   margin: 12px 12px 24px;
   padding: 24px;
   border-radius: 4px;
@@ -73,7 +75,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  padding: 12px 24px;
+  width: 124px;
+  padding: 12px;
   box-sizing: border-box;
   border-radius: 0 3px;
   background: #2e51a2;

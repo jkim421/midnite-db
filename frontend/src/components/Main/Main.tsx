@@ -123,7 +123,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
           {isLoadingShows ? (
             'Loading Shows...'
           ) : (
-            <div>
+            <div className="show-list-wrapper">
               {showsData.shows.map(show => (
                 <ShowCard
                   key={`${show.mal_id}_show-card`}
