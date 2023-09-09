@@ -5,6 +5,7 @@ import { ShowType } from '../../types/showTypes';
 import ShowCardImage from './ShowCardImage';
 import ShowCardDetails from './ShowCardDetails';
 import ShowCardTitleStats from './ShowCardTitleStats';
+import ShowCardTags from './ShowCardTags';
 
 import '../../styles/ShowCard.css';
 
@@ -66,6 +67,11 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
             episodes={episodes}
             rating={ratingAlias}
             showEngTitle={showEngTitle}
+          />
+          <ShowCardTags
+            genres={genres}
+            themes={themes}
+            demographics={demographics}
           />
         </div>
       </div>

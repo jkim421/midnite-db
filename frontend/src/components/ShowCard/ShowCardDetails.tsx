@@ -30,11 +30,11 @@ const formatTypeEpisodesRating = (
   let str = type;
 
   if (rating) {
-    str = str.concat(`   •   ${rating}`);
+    str = str.concat(`  •  ${rating}`);
   }
 
   if (episodes && !isSingleEpMovie) {
-    str = str.concat(`   •   ${episodes} episodes`);
+    str = str.concat(`  •  ${episodes} episodes`);
   }
 
   return str;

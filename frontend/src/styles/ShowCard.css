@@ -96,3 +96,17 @@
 .show-card_details-row_mal-metrics_users {
   font-size: 11px;
 }
+
+.show-card_details-row_tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.show-card_details-row_tags-tag {
+  padding: 4px 8px;
+  margin: 9px 8px 0 0;
+  font-size: 14px;
+  border-radius: 4px;
+  white-space: pre;
+}
