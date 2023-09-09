@@ -3,7 +3,7 @@
   max-width: 840px;
   min-width: 480px;
   margin: 12px 12px 24px;
-  padding: 24px;
+  padding: 24px 24px 0;
   border-radius: 4px;
   border: 1px solid white;
 }
@@ -109,4 +109,57 @@
   font-size: 14px;
   border-radius: 4px;
   white-space: pre;
+}
+
+.show-card_synopsis {
+  margin-top: 24px;
+  overflow: hidden;
+  font-size: 15px;
+}
+
+.show-card_synopsis_toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid white;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.show-card_synopsis_toggle_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  padding: 12px 0;
+}
+
+.show-card_synopsis_toggle_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.show-card_synopsis_toggle_icon > svg {
+  height: 20px;
+  width: 20px;
+}
+
+.show-card_synopsis_content-wrapper {
+  display: flex;
+  justify-content: center;
+  max-height: 0px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.show-card_synopsis_content {
+  width: 540px;
+}
+
+.show_card_synopsis_expanded {
+  max-height: 2000px;
+  padding-bottom: 24px;
 }

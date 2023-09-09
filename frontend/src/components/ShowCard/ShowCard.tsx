@@ -6,6 +6,7 @@ import ShowCardImage from './ShowCardImage';
 import ShowCardDetails from './ShowCardDetails';
 import ShowCardTitleStats from './ShowCardTitleStats';
 import ShowCardTags from './ShowCardTags';
+import ShowCardSynopsis from './ShowCardSynopsis';
 
 import '../../styles/ShowCard.css';
 
@@ -32,7 +33,7 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
     themes,
     demographics,
     synopsis,
-    // mal_id,
+    mal_id,
     // status,
     // source,
     // members,
@@ -75,6 +76,7 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
           />
         </div>
       </div>
+      <ShowCardSynopsis synopsis={synopsis} />
     </div>
   );
 };
