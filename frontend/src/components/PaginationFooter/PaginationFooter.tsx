@@ -24,14 +24,14 @@ const PaginationFooter = ({ page, count, setPage }: PaginationFooterProps) => {
   };
 
   const handlePageInputSubmission = () => {
-    if (pageInput) {
+    if (pageInput && pageInput <= totalPages) {
       setPage(pageInput);
     }
   };
 
   const handleInputEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (pageInput && e.key === 'Enter') {
-      if (pageInput < 1 || pageInput > totalPages) return;
+      if (pageInput > totalPages) return;
 
       handlePageInputSubmission();
     }
