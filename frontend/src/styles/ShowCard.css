@@ -58,6 +58,7 @@
 
 .show-card_details-row_info_title-wrapper {
   flex-grow: 1;
+  margin-bottom: 8px;
 }
 
 .show-card_details-row_info_default-title {
@@ -72,12 +73,14 @@
 
 .show-card_details-row_info-item {
   margin-top: 12px;
+  white-space: pre;
 }
 
 .show-card_details-row_mal-metrics {
   height: 72px;
-  width: 124px;
-  margin: -24px -24px 0 0;
+  min-width: 124px;
+  max-width: 124px;
+  margin: -24px -24px 0 12px;
   padding: 12px;
   box-sizing: border-box;
   border-radius: 0 3px;

@@ -7,6 +7,7 @@ interface ShowCardTitleStatsProps {
   titles?: ShowTitles;
   score?: number;
   scoringUsers?: number;
+  showEngTitle: boolean;
 }
 
 const formatScore = (score: number) => {
@@ -27,20 +28,15 @@ const ShowCardTitleStats = ({
   titles,
   score = 0,
   scoringUsers,
+  showEngTitle = false,
 }: ShowCardTitleStatsProps) => {
-  const defaultTitle = titles ? titles.default : title;
-  const showEngTitle =
-    titles && titles.english && titles.english !== defaultTitle;
-
   const formattedUsers = scoringUsers?.toLocaleString();
 
   return (
     <div className="show-card_details-row_info_title-stats">
       <div className="show-card_details-row_info_title-wrapper">
-        <div className="show-card_details-row_info_default-title">
-          {defaultTitle}
-        </div>
-        {showEngTitle && (
+        <div className="show-card_details-row_info_default-title">{title}</div>
+        {titles && showEngTitle && (
           <div className="show-card_details-row_info_english-title">
             {titles.english}
           </div>

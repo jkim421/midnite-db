@@ -9,6 +9,7 @@ interface ShowCardDetailsProps {
   type: string;
   episodes: number;
   rating?: string;
+  showEngTitle: boolean;
 }
 
 const formatYears = (years: ShowYears) => {
@@ -19,12 +20,24 @@ const formatYears = (years: ShowYears) => {
   else return `${start} - ${end}`;
 };
 
-const formatTypeEpisodes = (type: string, episodes: number) => {
+const formatTypeEpisodesRating = (
+  type: string,
+  episodes: number,
+  rating: string,
+) => {
   const isSingleEpMovie = type === 'Movie' && episodes === 1;
 
-  if (!episodes || isSingleEpMovie) return type;
+  let str = type;
 
-  return `${type} (${episodes} episodes)`;
+  if (rating) {
+    str = str.concat(`   •   ${rating}`);
+  }
+
+  if (episodes && !isSingleEpMovie) {
+    str = str.concat(`   •   ${episodes} episodes`);
+  }
+
+  return str;
 };
 
 const ShowCardDetails = ({
@@ -32,16 +45,18 @@ const ShowCardDetails = ({
   type,
   episodes,
   rating = '',
+  showEngTitle,
 }: ShowCardDetailsProps) => {
   return (
     <div>
-      <div className="show-card_details-row_info-item">
+      <div
+        style={{ marginTop: showEngTitle ? 12 : 0 }}
+        className="show-card_details-row_info-item">
         {formatYears(years)}
       </div>
       <div className="show-card_details-row_info-item">
-        {formatTypeEpisodes(type, episodes)}
+        {formatTypeEpisodesRating(type, episodes, rating)}
       </div>
-      <div className="show-card_details-row_info-item">{rating}</div>
     </div>
   );
 };

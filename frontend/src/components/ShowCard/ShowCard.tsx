@@ -38,6 +38,11 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
     // studios,
   } = show;
 
+  const defaultTitle = titles ? titles.default : title;
+  const showEngTitle = Boolean(
+    titles && titles.english && titles.english !== defaultTitle,
+  );
+
   const ratingAlias = rating ? ratingsMap[rating] : undefined;
 
   return (
@@ -49,8 +54,9 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
         />
         <div className="show-card_details-row_info">
           <ShowCardTitleStats
-            title={title}
+            title={defaultTitle}
             titles={titles}
+            showEngTitle={showEngTitle}
             score={score}
             scoringUsers={scored_by}
           />
@@ -59,6 +65,7 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
             type={type}
             episodes={episodes}
             rating={ratingAlias}
+            showEngTitle={showEngTitle}
           />
         </div>
       </div>
