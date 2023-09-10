@@ -5,7 +5,7 @@
   padding:  12px;
   box-sizing: border-box;
   background: var(--footer-color);
-  border-top: 1px solid white;
+  border-top: 1px solid var(--border-color);
 }
 
 .pagination-footer_arrow {

@@ -15,7 +15,10 @@ code {
 
 :root {
   --app-color: #2C2F3A;
+  --app-header-color: #252841;
   --footer-color: #C9C9C9;
+  --border-color: #5A5A7C;
+  --show-card-border-color: #9292B0;
   --mal-color: #2E51A2;
   --accent-color: #94ABE0;
   --hover-bg-color: #404254;
@@ -23,18 +26,14 @@ code {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
   background: #1C2021;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--footer-color);
+  background-color: #7A7A9F;
   border-radius: 6px;
   width: 50%;
-}
-
-::-webkit-scrollbar-track {
-  width: 8px;
 }
 
 .icon-hover {

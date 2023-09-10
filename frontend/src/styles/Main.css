@@ -23,8 +23,9 @@
   height: 64px;
   padding: 24px;
   box-sizing: border-box;
+  background: var(--app-header-color);
   color: white;
-  border-bottom: 1px solid white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .app-header_title-count {
@@ -63,11 +64,11 @@
   width: 400px;
   overflow: hidden;
   background-color: var(--app-color);
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   border-radius: 4px;
   box-shadow: none;
   z-index: 20;
-  transition: height 0.2s ease-out, border 0.3s ease-out;
+  transition: height 0.2s ease-out, border 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
 .app-header_about-modal-open {

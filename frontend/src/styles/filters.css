@@ -3,11 +3,11 @@
   min-width: 364px;
   max-width: 364px;
   box-sizing: border-box;
-  border-right: 1px solid white;
+  border-right: 1px solid var(--border-color);
 }
 
 .filters-panel_filters-wrapper {
-  height: calc(100vh - 64px - 48px - 1px);
+  height: calc(100vh - 64px - 56px);
   padding: 12px 24px 24px;
   box-sizing: border-box;
   overflow-y: scroll;
@@ -25,10 +25,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 48px;
-  padding: 24px;
+  height: 56px;
+  padding: 0px 24px;
   box-sizing: border-box;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .filter-panel_submit-btn {
@@ -126,8 +126,6 @@
   align-items: center;
   justify-content: space-between;
   width: fit-content;
-  color: white;
-  border: 1px solid white;
   border-radius: 4px;
   font-size: 12px;
   margin: 4px 0 4px;
@@ -143,8 +141,8 @@
   justify-content: space-between;
   height: 8px;
   width: 8px;
-  padding: 4px 8px;
-  margin-left: 4px;
+  padding: 6px;
+  margin: 0 4px;
   &:hover {
     cursor: pointer;
   }
