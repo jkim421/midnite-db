@@ -8,6 +8,7 @@ import {
 } from '../../types/filterTypes';
 import { ShowStateType } from '../../types/showTypes';
 
+import MainHeader from './MainHeader';
 import FiltersPanel from '../FiltersPanel';
 import PaginationFooter from '../PaginationFooter';
 import ShowCard from '../ShowCard';
@@ -118,20 +119,13 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
 
   const ratingsMap = getRatingsMap(filters.rating as FilterOptionType[]);
 
-  const formattedCount = showsData.count ? showsData.count.toLocaleString() : 0;
-
   const placeholderContent = isLoadingShows
     ? 'Loading entries...'
     : 'No matching entries.';
 
   return (
     <main className="app-wrapper">
-      <header className="app-header">
-        <h3 style={{ margin: 0 }}>midnite-db</h3>
-        {showsData.count != 0 && (
-          <h5 style={{ margin: '0 0 0 48px' }}>{formattedCount} entries</h5>
-        )}
-      </header>
+      <MainHeader count={showsData.count} />
       <div className="app-content">
         <FiltersPanel
           isLoadingFilters={isLoadingFilters}

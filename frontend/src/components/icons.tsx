@@ -6,7 +6,8 @@ interface ArrowProps {
 
 interface CloseIconProps {
   onClick: React.MouseEventHandler<HTMLDivElement>;
-  tagColor: string;
+  tagColor?: string;
+  style?: object;
 }
 
 export const LeftArrow = ({ onClick }: ArrowProps) => (
@@ -35,10 +36,15 @@ export const RightArrow = ({ onClick }: ArrowProps) => (
   </div>
 );
 
-export const CloseIcon = ({ onClick, tagColor = 'white' }: CloseIconProps) => (
+export const CloseIcon = ({
+  onClick,
+  tagColor = 'white',
+  style = {},
+}: CloseIconProps) => (
   <div
     className="filter-clause-tag_remove"
-    onClick={onClick}>
+    onClick={onClick}
+    style={style}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height="1em"
