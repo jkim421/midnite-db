@@ -1,6 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
 
+import {
+  DEMOGRAPHICS_COLOR,
+  GENRES_COLOR,
+  THEMES_COLOR,
+} from '../../constants/colors';
+
 import '../../styles/ShowCard.css';
 
 interface ShowCardTagsProps {
@@ -35,9 +41,9 @@ const getTagsFromArray = (arr: string[], color: string) =>
   ));
 
 const ShowCardTags = ({ demographics, genres, themes }: ShowCardTagsProps) => {
-  const demoTags = getTagsFromArray(demographics, '#ADD2FF');
-  const genreTags = getTagsFromArray(genres, '#FFF394');
-  const themeTags = getTagsFromArray(themes, '#ADFFD3');
+  const demoTags = getTagsFromArray(demographics, DEMOGRAPHICS_COLOR);
+  const genreTags = getTagsFromArray(genres, GENRES_COLOR);
+  const themeTags = getTagsFromArray(themes, THEMES_COLOR);
 
   return (
     <div className="show-card_details-row_tags">

@@ -8,6 +8,8 @@ import {
 import CheckboxColumns from '../CheckboxColumns/CheckboxColumns';
 
 import { getIsMultiColumn } from '../../../utils/filterUtils';
+import { DEMOGRAPHICS_COLOR } from '../../../constants/colors';
+
 import '../../../styles/filters.css';
 
 const MultiselectFilter = ({
@@ -39,9 +41,19 @@ const MultiselectFilter = ({
       }));
     };
 
+  const isDemographic = title === 'Demographic';
+
   return (
     <section className="multiselect-filter-wrapper">
-      <h5 className="filter_title">{title}</h5>
+      <div className="multiselect-filter_header">
+        <h5 className="filter_title">{title}</h5>
+        {isDemographic && (
+          <span
+            className="multiselect-filter_header_tag"
+            style={{ border: `1px solid ${DEMOGRAPHICS_COLOR}` }}
+          />
+        )}
+      </div>
       <CheckboxColumns
         filterData={filterData}
         title={title}

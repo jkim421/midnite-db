@@ -38,6 +38,18 @@
   margin-left: 12px;
 }
 
+.multiselect-filter_header {
+  display: flex;
+  align-items: center;
+}
+
+.multiselect-filter_header_tag {
+  margin-left: 16px;
+  height: 12px;
+  width: 20px;
+  border-radius: 4px;
+}
+
 .filter_title {
   margin: 8px 0px 8px 0px;
   color: white;
@@ -77,8 +89,11 @@
   border: 1px solid white;
   border-radius: 4px;
   font-size: 12px;
-  padding: 4px 0 4px 8px;
   margin: 4px 0 4px;
+}
+
+.filter-clause-tag_content {
+  padding: 6px 0 6px 8px;
 }
 
 .filter-clause-tag_remove {
@@ -89,7 +104,7 @@
   width: 8px;
   padding: 4px 8px;
   margin-left: 4px;
-  :hover {
+  &:hover {
     cursor: pointer;
   }
 }

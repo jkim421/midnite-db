@@ -9,9 +9,22 @@ import CheckboxColumns from '../CheckboxColumns';
 import ClauseTags from './ClauseTags';
 
 import { getIsMultiColumn } from '../../../utils/filterUtils';
+import { GENRES_COLOR, THEMES_COLOR } from '../../../constants/colors';
+
 import '../../../styles/filters.css';
 
+interface ColorMap {
+  [key: string]: string;
+  Genre: string;
+  Theme: string;
+}
+
 const MAX_CLAUSES = 3;
+
+const COLOR_MAP: ColorMap = {
+  Genre: GENRES_COLOR,
+  Theme: THEMES_COLOR,
+};
 
 const MultiselectFilterWithClauses = ({
   title,
@@ -73,13 +86,22 @@ const MultiselectFilterWithClauses = ({
       }));
     };
 
+  const tagColor = COLOR_MAP[title];
+
   return (
     <section className="multiselect-filter-wrapper">
-      <h5 className="filter_title">{title}</h5>
+      <div className="multiselect-filter_header">
+        <h5 className="filter_title">{title}</h5>
+        <span
+          className="multiselect-filter_header_tag"
+          style={{ border: `1px solid ${tagColor}` }}
+        />
+      </div>
       <ClauseTags
         title={title}
         clauses={selectedValues as string[][]}
         getRemoveClause={getRemoveClause}
+        tagColor={tagColor}
       />
       <button
         onClick={onSaveBtnClick}

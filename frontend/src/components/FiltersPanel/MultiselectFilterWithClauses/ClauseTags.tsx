@@ -7,6 +7,7 @@ interface ClauseTagsProps {
   title: string;
   clauses: string[][];
   getRemoveClause: (idx: number) => React.MouseEventHandler<HTMLDivElement>;
+  tagColor: string;
 }
 
 const getClauseContent = (clause: string[]) =>
@@ -20,7 +21,12 @@ const getClauseContent = (clause: string[]) =>
     return str;
   }, '');
 
-const ClauseTags = ({ clauses, title, getRemoveClause }: ClauseTagsProps) => {
+const ClauseTags = ({
+  clauses,
+  title,
+  getRemoveClause,
+  tagColor,
+}: ClauseTagsProps) => {
   return (
     <div>
       {clauses.map((clause: string[], idx: number) => {
@@ -32,9 +38,16 @@ const ClauseTags = ({ clauses, title, getRemoveClause }: ClauseTagsProps) => {
         return (
           <div
             key={key}
-            className="filter-clause-tag">
-            <span>{content}</span>
-            <CloseIcon onClick={removeClauseFn} />
+            className="filter-clause-tag"
+            style={{
+              color: tagColor,
+              border: `1px solid ${tagColor}`,
+            }}>
+            <span className="filter-clause-tag_content">{content}</span>
+            <CloseIcon
+              onClick={removeClauseFn}
+              tagColor={tagColor}
+            />
           </div>
         );
       })}
