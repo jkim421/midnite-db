@@ -139,7 +139,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
       <div className="content-wrapper">
         <header className="app-header">
           <h3 style={{ margin: 0 }}>midnite-db</h3>
-          {!isLoadingShows && (
+          {showsData.count != 0 && (
             <h5 style={{ margin: '0 0 0 24px' }}>{formattedCount} entries</h5>
           )}
         </header>

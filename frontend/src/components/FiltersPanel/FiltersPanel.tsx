@@ -109,57 +109,59 @@ const FiltersPanel = ({
           Reset all filters
         </div>
       </div>
-      <SliderFilter
-        title="MAL Score"
-        step={1}
-        minValue={0}
-        maxValue={10}
-        selectionsKey="malScore"
-        setSelections={setSelections}
-      />
-      <SliderFilter
-        title="Air Years"
-        step={1}
-        minValue={1917}
-        maxValue={currentYear}
-        selectionsKey="years"
-        setSelections={setSelections}
-        showReset
-      />
-      {MULTISELECT_FILTERS_MAP.map(
-        ({
-          title,
-          selectionsKey,
-          currentSelectionsKey = '',
-          MultiselectComponent,
-          sortFn,
-        }) => {
-          let filterData = filters[selectionsKey] as FilterOptionType[];
-          if (sortFn) filterData = sortFn(filterData);
+      <div className="filters-panel_filters-wrapper">
+        <SliderFilter
+          title="MAL Score"
+          step={1}
+          minValue={0}
+          maxValue={10}
+          selectionsKey="malScore"
+          setSelections={setSelections}
+        />
+        <SliderFilter
+          title="Air Years"
+          step={1}
+          minValue={1917}
+          maxValue={currentYear}
+          selectionsKey="years"
+          setSelections={setSelections}
+          showReset
+        />
+        {MULTISELECT_FILTERS_MAP.map(
+          ({
+            title,
+            selectionsKey,
+            currentSelectionsKey = '',
+            MultiselectComponent,
+            sortFn,
+          }) => {
+            let filterData = filters[selectionsKey] as FilterOptionType[];
+            if (sortFn) filterData = sortFn(filterData);
 
-          const currentSelections = currentSelectionsKey
-            ? selections[currentSelectionsKey]
-            : [];
+            const currentSelections = currentSelectionsKey
+              ? selections[currentSelectionsKey]
+              : [];
 
-          const selectedValues = selections[selectionsKey] as
-            | string[]
-            | string[][];
+            const selectedValues = selections[selectionsKey] as
+              | string[]
+              | string[][];
 
-          return (
-            <MultiselectComponent
-              key={`${_.kebabCase(title)}-filter-component`}
-              title={title}
-              filterData={filterData}
-              selectionsKey={selectionsKey}
-              currentSelections={currentSelections as string[]}
-              currentSelectionsKey={currentSelectionsKey}
-              selectedValues={selectedValues}
-              setSelections={setSelections}
-            />
-          );
-        },
-      )}
-      {/* <h5>{`Studios: ${filters.studios.length}`}</h5> */}
+            return (
+              <MultiselectComponent
+                key={`${_.kebabCase(title)}-filter-component`}
+                title={title}
+                filterData={filterData}
+                selectionsKey={selectionsKey}
+                currentSelections={currentSelections as string[]}
+                currentSelectionsKey={currentSelectionsKey}
+                selectedValues={selectedValues}
+                setSelections={setSelections}
+              />
+            );
+          },
+        )}
+        {/* <h5>{`Studios: ${filters.studios.length}`}</h5> */}
+      </div>
     </div>
   );
 };
