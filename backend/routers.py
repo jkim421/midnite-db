@@ -72,9 +72,12 @@ async def get_show(request: Request, filters: str = Query(default=""), page: int
     if len(count_documents) > 0:
       query_match_count = count_documents[0]["count"]
 
+    # sort by score by default
+    agg_pipeline.append({ "$sort": { "score": -1 } })
+
     # get paginated show results
-    agg_pipeline.append({"$skip": (page - 1) * page_size })
-    agg_pipeline.append({"$limit": page_size })
+    agg_pipeline.append({ "$skip": (page - 1) * page_size })
+    agg_pipeline.append({ "$limit": page_size })
 
     cursor: AsyncIOMotorCursor = collection.aggregate(agg_pipeline)
 
