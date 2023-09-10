@@ -77,6 +77,9 @@
 }
 
 .show-card_details-row_mal-metrics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 72px;
   min-width: 124px;
   max-width: 124px;

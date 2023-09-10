@@ -40,7 +40,7 @@ const MultiselectFilter = ({
     };
 
   return (
-    <section>
+    <section className="multiselect-filter-wrapper">
       <h5 className="filter_title">{title}</h5>
       <CheckboxColumns
         filterData={filterData}

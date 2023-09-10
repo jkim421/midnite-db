@@ -12,6 +12,7 @@ interface SliderFilter {
   showReset?: boolean;
   selectionsKey: string;
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
+  styles?: object;
 }
 
 interface RangePositionsArgs {
@@ -51,6 +52,7 @@ const SliderFilter = ({
   showReset,
   selectionsKey,
   setSelections,
+  styles = {},
 }: SliderFilter) => {
   const [rangeBottom, setRangeBottom] = useState<number>(minValue);
   const [rangeTop, setRangeTop] = useState<number>(maxValue);
@@ -100,7 +102,7 @@ const SliderFilter = ({
   };
 
   return (
-    <div>
+    <div style={styles}>
       <div
         className="slider-filter_header"
         style={{ marginBottom: showReset ? 8 : 0 }}>

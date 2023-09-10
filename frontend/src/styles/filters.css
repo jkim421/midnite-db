@@ -1,5 +1,5 @@
 .FiltersPanel {
-  height: 100vh;
+  height: calc(100vh - 64px);
   min-width: 364px;
   max-width: 364px;
   box-sizing: border-box;
@@ -7,7 +7,7 @@
 }
 
 .filters-panel_filters-wrapper {
-  height: calc(100vh - 48px - 24px);
+  height: calc(100vh - 64px - 48px - 1px);
   padding: 24px;
   box-sizing: border-box;
   overflow-y: scroll;
@@ -42,6 +42,11 @@
   margin: 8px 0px 8px 0px;
   color: white;
   cursor: default;
+  font-size: 14px;
+}
+
+.multiselect-filter-wrapper {
+  padding-bottom: 12px;
 }
 
 .multiselect-filter_columns {

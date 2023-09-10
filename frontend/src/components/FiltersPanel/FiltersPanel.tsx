@@ -125,16 +125,20 @@ const FiltersPanel = ({
           maxValue={currentYear}
           selectionsKey="years"
           setSelections={setSelections}
+          styles={{ paddingBottom: 4 }}
           showReset
         />
         {MULTISELECT_FILTERS_MAP.map(
-          ({
-            title,
-            selectionsKey,
-            currentSelectionsKey = '',
-            MultiselectComponent,
-            sortFn,
-          }) => {
+          (
+            {
+              title,
+              selectionsKey,
+              currentSelectionsKey = '',
+              MultiselectComponent,
+              sortFn,
+            },
+            idx,
+          ) => {
             let filterData = filters[selectionsKey] as FilterOptionType[];
             if (sortFn) filterData = sortFn(filterData);
 

@@ -126,47 +126,49 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
 
   return (
     <main className="app-wrapper">
-      <FiltersPanel
-        isLoadingFilters={isLoadingFilters}
-        isLoadingShows={isLoadingShows}
-        filters={filters}
-        selections={selections}
-        setSelections={setSelections}
-        currentYear={currentYear}
-        fetchData={fetchData}
-        setPage={setPage}
-      />
-      <div className="content-wrapper">
-        <header className="app-header">
-          <h3 style={{ margin: 0 }}>midnite-db</h3>
-          {showsData.count != 0 && (
-            <h5 style={{ margin: '0 0 0 24px' }}>{formattedCount} entries</h5>
+      <header className="app-header">
+        <h3 style={{ margin: 0 }}>midnite-db</h3>
+        {showsData.count != 0 && (
+          <h5 style={{ margin: '0 0 0 48px' }}>{formattedCount} entries</h5>
+        )}
+      </header>
+      <div className="app-content">
+        <FiltersPanel
+          isLoadingFilters={isLoadingFilters}
+          isLoadingShows={isLoadingShows}
+          filters={filters}
+          selections={selections}
+          setSelections={setSelections}
+          currentYear={currentYear}
+          fetchData={fetchData}
+          setPage={setPage}
+        />
+        <div className="shows-wrapper">
+          {isLoadingShows || (!isLoadingShows && showsData.count == 0) ? (
+            <section className="show-section show-section_loading">
+              <span>{placeholderContent}</span>
+            </section>
+          ) : (
+            <section className="show-section">
+              <div className="show-list-wrapper">
+                {showsData.shows.map(show => (
+                  <ShowCard
+                    key={`${show.mal_id}_show-card`}
+                    show={show}
+                    ratingsMap={ratingsMap}
+                  />
+                ))}
+              </div>
+            </section>
           )}
-        </header>
-        {isLoadingShows || (!isLoadingShows && showsData.count == 0) ? (
-          <section className="show-section show-section_loading">
-            <span>{placeholderContent}</span>
-          </section>
-        ) : (
-          <section className="show-section">
-            <div className="show-list-wrapper">
-              {showsData.shows.map(show => (
-                <ShowCard
-                  key={`${show.mal_id}_show-card`}
-                  show={show}
-                  ratingsMap={ratingsMap}
-                />
-              ))}
-            </div>
-          </section>
-        )}
-        {showFooter && (
-          <PaginationFooter
-            page={page}
-            count={showsData.count}
-            setPage={setPage}
-          />
-        )}
+          {showFooter && (
+            <PaginationFooter
+              page={page}
+              count={showsData.count}
+              setPage={setPage}
+            />
+          )}
+        </div>
       </div>
     </main>
   );
