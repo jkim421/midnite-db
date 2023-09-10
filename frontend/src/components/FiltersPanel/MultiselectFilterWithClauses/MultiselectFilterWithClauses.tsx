@@ -88,6 +88,10 @@ const MultiselectFilterWithClauses = ({
 
   const tagColor = COLOR_MAP[title];
 
+  const buttonTitle = isButtonDisabled
+    ? `Make selections to save a ${title.toLowerCase()} set`
+    : '';
+
   return (
     <section className="multiselect-filter-wrapper">
       <div className="multiselect-filter_header">
@@ -106,7 +110,8 @@ const MultiselectFilterWithClauses = ({
       <button
         className="multiselect-filter_clause-btn"
         onClick={onSaveBtnClick}
-        disabled={isButtonDisabled}>
+        disabled={isButtonDisabled}
+        title={buttonTitle}>
         Save {title} Set
       </button>
       <CheckboxColumns

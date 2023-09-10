@@ -87,7 +87,7 @@
   padding: 12px;
   box-sizing: border-box;
   border-radius: 0 3px;
-  background: #2e51a2;
+  background: var(--mal-color);
   text-align: center;
 }
 

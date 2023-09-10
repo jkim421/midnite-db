@@ -25,18 +25,19 @@ const MainHeaderAbout = () => {
           <div className="about-header_about-header">
             <div>About midnite-db</div>
             <CloseIcon
+              hoverClass="icon-hover"
               onClick={onClick}
               style={{
                 height: 16,
-                width: 24,
+                width: 16,
                 margin: 0,
-                padding: 12,
+                padding: 8,
                 justifyContent: 'center',
               }}
             />
           </div>
           <div>
-            <span>By&nbsp;</span>
+            <span>Work in progress, by&nbsp;</span>
             <a
               className="about-header_profile-link"
               href="https://github.com/jkim421"

@@ -4,7 +4,7 @@
   height: 48px;
   padding:  12px;
   box-sizing: border-box;
-  background: #C9C9C9;
+  background: var(--footer-color);
   border-top: 1px solid white;
 }
 
@@ -30,4 +30,8 @@
   border-radius: 4px;
   background: white;
   border: 1px solid black;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--btn-hover-bg-color);
+  };
 }

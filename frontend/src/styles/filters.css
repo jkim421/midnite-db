@@ -33,8 +33,13 @@
 
 .filter-panel_submit-btn {
   padding: 4px 8px;
+  font-size: 14px;
   border-radius: 4px;
   border: none;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--btn-hover-bg-color);
+  }
 }
 
 .filters-panel-buttons_reset {
@@ -42,6 +47,11 @@
   color: lightgray;
   cursor: pointer;
   margin-left: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  &:hover {
+    background-color: var(--hover-bg-color);
+  }
 }
 
 .multiselect-filter_header {
@@ -80,10 +90,35 @@
   padding-right: 18px;
 }
 
+.filter-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.filter-checkbox_disabled {
+  &:hover {
+    cursor: not-allowed;
+  }
+}
+
+.filter-checkbox-input {
+  margin-right: 0;
+  &:hover {
+    cursor: inherit;
+  }
+}
+
 .filter-checkbox-label {
-  margin-left: 12px;
+  padding: 0 4px 0 12px;
   font-size: 12px;
   color: white;
+  &:hover {
+    cursor: inherit;
+  }
 }
 
 .filter-clause-tag {
@@ -122,11 +157,15 @@
   border: none;
   &:hover {
     cursor: pointer;
+    background-color: var(--footer-color)
   }
 }
 
 .multiselect-filter_clause-btn:disabled {
+  color: lightgrey;
+  background-color: grey;
   &:hover {
-    cursor: default;
+    cursor:not-allowed;
+    background-color: grey;
   }
 }

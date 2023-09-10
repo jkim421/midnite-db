@@ -13,17 +13,33 @@ code {
     monospace;
 }
 
+:root {
+  --app-color: #2C2F3A;
+  --footer-color: #C9C9C9;
+  --mal-color: #2E51A2;
+  --accent-color: #94ABE0;
+  --hover-bg-color: #404254;
+  --btn-hover-bg-color: #CFCFCF;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   background: #1C2021;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #C9C9C9;
+  background-color: var(--footer-color);
   border-radius: 6px;
   width: 50%;
 }
 
 ::-webkit-scrollbar-track {
   width: 8px;
+}
+
+.icon-hover {
+  &:hover {
+    border-radius: 4px;
+    background: var(--hover-bg-color);
+  }
 }

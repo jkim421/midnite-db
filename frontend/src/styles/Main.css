@@ -1,5 +1,5 @@
 .app-wrapper {
-  background-color: #2C2F3A;
+  background-color: var(--app-color);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,6 +50,8 @@
   user-select: none;
   &:hover {
     cursor: pointer;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
   }
 }
 
@@ -60,7 +62,7 @@
   height: 0px;
   width: 400px;
   overflow: hidden;
-  background-color: #2C2F3A;
+  background-color: var(--app-color);
   border: 1px solid transparent;
   border-radius: 4px;
   box-shadow: none;
@@ -69,7 +71,7 @@
 }
 
 .app-header_about-modal-open {
-  height: 400px;
+  height: 380px;
   border: 1px  solid white;
   box-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
 }

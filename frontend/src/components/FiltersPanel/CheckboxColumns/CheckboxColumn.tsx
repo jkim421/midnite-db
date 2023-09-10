@@ -30,13 +30,21 @@ const CheckboxColumn = ({
         const onChange = getOnChange(value);
 
         const isChecked = selectedValues.includes(value);
+
         const isDisabled =
           !isChecked && selectedValues.length >= MAX_CLAUSE_LENGTH;
 
+        const className = isDisabled
+          ? 'filter-checkbox-wrapper filter-checkbox_disabled'
+          : 'filter-checkbox-wrapper';
+
         return (
-          <div key={id}>
+          <div
+            key={id}
+            className={className}>
             <input
               id={id}
+              className="filter-checkbox-input"
               type="checkbox"
               checked={isChecked}
               disabled={isDisabled}
