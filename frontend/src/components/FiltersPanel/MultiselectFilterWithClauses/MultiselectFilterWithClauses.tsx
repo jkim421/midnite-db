@@ -104,6 +104,7 @@ const MultiselectFilterWithClauses = ({
         tagColor={tagColor}
       />
       <button
+        className="multiselect-filter_clause-btn"
         onClick={onSaveBtnClick}
         disabled={isButtonDisabled}>
         Save {title} Set

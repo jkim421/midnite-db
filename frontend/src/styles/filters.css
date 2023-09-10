@@ -8,7 +8,7 @@
 
 .filters-panel_filters-wrapper {
   height: calc(100vh - 64px - 48px - 1px);
-  padding: 24px;
+  padding: 12px 24px 24px;
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -29,6 +29,12 @@
   padding: 24px;
   box-sizing: border-box;
   border-bottom: 1px solid white;
+}
+
+.filter-panel_submit-btn {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: none;
 }
 
 .filters-panel-buttons_reset {
@@ -106,5 +112,21 @@
   margin-left: 4px;
   &:hover {
     cursor: pointer;
+  }
+}
+
+.multiselect-filter_clause-btn {
+  margin: 4px 0 8px 0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.multiselect-filter_clause-btn:disabled {
+  &:hover {
+    cursor: default;
   }
 }

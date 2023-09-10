@@ -99,6 +99,7 @@ const FiltersPanel = ({
     <div className="FiltersPanel">
       <div className="filters-panel-buttons">
         <button
+          className="filter-panel_submit-btn"
           onClick={onSubmit}
           disabled={isLoadingShows}>
           Submit Query
