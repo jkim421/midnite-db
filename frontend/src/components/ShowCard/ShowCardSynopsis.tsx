@@ -11,6 +11,10 @@ const EXPANDED_CLASS = 'show_card_synopsis_expanded';
 const ShowCardSynopsis = ({ synopsis }: ShowCardSynopsisProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  if (!synopsis) {
+    return <div style={{ paddingTop: 24 }} />;
+  }
+
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
 
@@ -25,9 +29,7 @@ const ShowCardSynopsis = ({ synopsis }: ShowCardSynopsisProps) => {
     contentClasses = contentClasses.concat(` ${EXPANDED_CLASS}`);
   }
 
-  const cleanedSynonpsis = synopsis
-    ? synopsis.replace('[Written by MAL Rewrite]', '')
-    : 'No Synopsis';
+  const cleanedSynonpsis = synopsis.replace('[Written by MAL Rewrite]', '');
 
   return (
     <div className="show-card_synopsis">
