@@ -65,7 +65,11 @@ const PaginationFooter = ({ page, count, setPage }: PaginationFooterProps) => {
         onChange={handlePageInput}
         onKeyDown={handleInputEnter}
       />
-      <button onClick={handlePageInputSubmission}>Go to page</button>
+      <button
+        className="pagination-footer_page-btn"
+        onClick={handlePageInputSubmission}>
+        Go to page
+      </button>
     </div>
   );
 };

@@ -4,8 +4,8 @@
   height: 48px;
   padding:  12px;
   box-sizing: border-box;
-
-  background: lightgray;
+  background: #C9C9C9;
+  border-top: 1px solid white;
 }
 
 .pagination-footer_arrow {
@@ -22,4 +22,12 @@
 .pagination-footer_input {
   width: 40px;
   margin: 0 4px;
+}
+
+.pagination-footer_page-btn {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: white;
+  border: 1px solid black;
 }
