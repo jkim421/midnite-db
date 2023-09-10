@@ -9,6 +9,19 @@
   border: 1px dashed white;
 }
 
+.filters-panel-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.filters-panel-buttons_reset {
+  font-size: 11px;
+  color: lightgray;
+  cursor: pointer;
+  margin-left: 12px;
+}
+
 .filter_title {
   margin: 8px 0px 8px 0px;
   color: white;

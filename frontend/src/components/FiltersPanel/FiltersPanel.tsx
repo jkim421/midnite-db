@@ -20,7 +20,8 @@ interface FiltersPanelProps {
   selections: FilterSelectionsStateType;
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
   currentYear: number;
-  fetchData: () => void;
+  fetchData: (resetPage?: boolean, resetFilters?: boolean) => void;
+  setPage: Dispatch<SetStateAction<number>>;
 }
 
 const sortFiltersBySortKey = (data: FilterOptionType[]) =>
@@ -84,16 +85,27 @@ const FiltersPanel = ({
     return <section className="FiltersPanel">Loading filters...</section>;
 
   const onSubmit = async () => {
-    fetchData();
+    fetchData(true);
+  };
+
+  const resetFilters = () => {
+    fetchData(true, true);
   };
 
   return (
     <div className="FiltersPanel">
-      <button
-        onClick={onSubmit}
-        disabled={isLoadingShows}>
-        Submit Query
-      </button>
+      <div className="filters-panel-buttons">
+        <button
+          onClick={onSubmit}
+          disabled={isLoadingShows}>
+          Submit Query
+        </button>
+        <div
+          className="filters-panel-buttons_reset"
+          onClick={resetFilters}>
+          Reset all filters
+        </div>
+      </div>
       <SliderFilter
         title="MAL Score"
         step={1}

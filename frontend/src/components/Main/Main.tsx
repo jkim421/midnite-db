@@ -57,7 +57,7 @@ const getRatingsMap = (ratings: FilterOptionType[] = []) =>
 const Main = ({ filters, isLoadingFilters }: MainProps) => {
   const currentYear = new Date().getFullYear();
 
-  const [selections, setSelections] = useState<FilterSelectionsStateType>({
+  const defaultSelections = {
     type: [],
     status: [],
     rating: [],
@@ -69,7 +69,10 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
     theme: [],
     currentTheme: [],
     studio: '',
-  });
+  } as FilterSelectionsStateType;
+
+  const [selections, setSelections] =
+    useState<FilterSelectionsStateType>(defaultSelections);
 
   const [showsData, setShowsData] = useState<ShowStateType>({
     loading: false,
@@ -79,15 +82,28 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
 
   const [page, setPage] = useState<number>(1);
 
-  const fetchData = async () => {
+  const fetchData = async (resetPage = false, resetFilters = false) => {
+    const finalSelections = resetFilters
+      ? defaultSelections
+      : getFinalSelections(selections);
+
+    if (resetFilters) {
+      setSelections(defaultSelections);
+    }
+
+    let pageToFetch = page;
+
+    if (resetPage) {
+      pageToFetch = 1;
+      setPage(1);
+    }
+
     setShowsData(prevState => ({
       ...prevState,
       loading: true,
     }));
 
-    const finalSelections = getFinalSelections(selections);
-
-    const { count, shows } = await fetchShows(finalSelections, page);
+    const { count, shows } = await fetchShows(finalSelections, pageToFetch);
 
     setShowsData({ loading: false, count, shows });
   };
@@ -112,6 +128,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
         setSelections={setSelections}
         currentYear={currentYear}
         fetchData={fetchData}
+        setPage={setPage}
       />
       <div className="content-wrapper">
         <header className="app-header">
