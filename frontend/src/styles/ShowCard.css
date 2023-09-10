@@ -124,18 +124,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 12px 0;
   border-top: 1px solid white;
   &:hover {
     cursor: pointer;
   }
 }
 
-.show-card_synopsis_toggle_btn {
+.show-card_synopsis_toggle_label {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 24px;
-  padding: 12px 0;
 }
 
 .show-card_synopsis_toggle_icon {
@@ -156,13 +156,17 @@
   max-height: 0px;
   line-height: 1.5;
   box-sizing: border-box;
+  /* closing transition */
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
 }
 
 .show-card_synopsis_content {
-  width: 540px;
+  width: 640px;
 }
 
 .show_card_synopsis_expanded {
-  max-height: 2000px;
-  padding-bottom: 24px;
+  max-height: 1000px;
+  margin-bottom: 24px;
+  /* opening transition */
+  transition: max-height 0.3s cubic-bezier(1, 0.5, 1, 0);
 }

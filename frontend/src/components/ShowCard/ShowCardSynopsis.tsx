@@ -34,7 +34,7 @@ const ShowCardSynopsis = ({ synopsis }: ShowCardSynopsisProps) => {
       <div
         className="show-card_synopsis_toggle"
         onClick={onClick}>
-        <div className="show-card_synopsis_toggle_btn">
+        <div className="show-card_synopsis_toggle_label">
           <span style={{ marginRight: 12 }}>Synopsis</span>
           <Icon />
         </div>
