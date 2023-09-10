@@ -80,9 +80,12 @@ const FiltersPanel = ({
   currentYear,
   fetchData,
 }: FiltersPanelProps) => {
-  // TODO - build out full loading ui
   if (isLoadingFilters)
-    return <section className="FiltersPanel">Loading filters...</section>;
+    return (
+      <section className="FiltersPanel filters-panel_loading">
+        <span>Loading filters...</span>
+      </section>
+    );
 
   const onSubmit = async () => {
     fetchData(true);

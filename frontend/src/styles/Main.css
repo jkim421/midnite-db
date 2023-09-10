@@ -15,20 +15,26 @@
   display: flex;
   align-items: center;
   height: 72px;
-  padding: 12px;
+  padding: 24px;
   box-sizing: border-box;
   color: white;
-  border: 1px dashed white;
+  border-bottom: 1px solid white;
 }
 
 .show-section {
   position: relative;
   height: calc(100vh - 72px - 48px);
   width: calc(100vw - 340px);
-  padding: 12px;
+  padding: 24px;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow: auto;
   color: white;
+}
+
+.show-section_loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .show-list-wrapper {

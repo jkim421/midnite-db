@@ -118,6 +118,12 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
 
   const ratingsMap = getRatingsMap(filters.rating as FilterOptionType[]);
 
+  const formattedCount = showsData.count ? showsData.count.toLocaleString() : 0;
+
+  const placeholderContent = isLoadingShows
+    ? 'Loading entries...'
+    : 'No matching entries.';
+
   return (
     <main className="app-wrapper">
       <FiltersPanel
@@ -132,14 +138,17 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
       />
       <div className="content-wrapper">
         <header className="app-header">
-          <h3>midnite-db</h3>
+          <h3 style={{ margin: 0 }}>midnite-db</h3>
+          {!isLoadingShows && (
+            <h5 style={{ margin: '0 0 0 24px' }}>{formattedCount} entries</h5>
+          )}
         </header>
-        <section className="show-section">
-          <h4>SHOWS</h4>
-          <h5>Show Count: {showsData.count}</h5>
-          {isLoadingShows ? (
-            'Loading Shows...'
-          ) : (
+        {isLoadingShows || (!isLoadingShows && showsData.count == 0) ? (
+          <section className="show-section show-section_loading">
+            <span>{placeholderContent}</span>
+          </section>
+        ) : (
+          <section className="show-section">
             <div className="show-list-wrapper">
               {showsData.shows.map(show => (
                 <ShowCard
@@ -149,8 +158,8 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
                 />
               ))}
             </div>
-          )}
-        </section>
+          </section>
+        )}
         {showFooter && (
           <PaginationFooter
             page={page}
