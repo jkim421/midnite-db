@@ -39,25 +39,6 @@ export const getRatingsMap = (ratings: FilterOptionType[] = []) =>
     {} as { [key: string]: string },
   );
 
-export const getShowNumCount = (
-  page: number,
-  count: number,
-  resultsOnPage: number,
-) => {
-  if (!count) {
-    return '0 entries';
-  }
-
-  const adjustedPage = page - 1;
-
-  const rangeStart = (PAGE_SIZE * adjustedPage + 1).toLocaleString();
-  const rangeEnd = (PAGE_SIZE * adjustedPage + resultsOnPage).toLocaleString();
-
-  const formattedCount = count.toLocaleString();
-
-  return `Entries ${rangeStart} - ${rangeEnd} of ${formattedCount}`;
-};
-
 export const currentYear = new Date().getFullYear();
 
 export const defaultSelections = {

@@ -15,14 +15,14 @@ import {
 import MainHeader from './MainHeader';
 import FiltersPanel from '../FiltersPanel';
 import PaginationFooter from '../PaginationFooter';
-import ShowCard from '../ShowCard';
+import ShowCards from '../ShowCards';
+import ShowCard from '../ShowCards/ShowCard';
 import Spinner from '../Spinner';
 
 import fetchShows from '../../utils/fetchShows';
 import {
   getCleanedSelections,
   getRatingsMap,
-  getShowNumCount,
   defaultSelections,
   currentYear,
 } from './utils';
@@ -47,7 +47,6 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   });
 
   const [page, setPage] = useState<number>(1);
-  const [countHeaderText, setCountHeaderText] = useState<string>('No entries');
 
   const fetchShowsData: FetchShowsDataType = async ({
     selections,
@@ -110,16 +109,6 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   }, [page]);
 
   useEffect(() => {
-    const showNumCount = getShowNumCount(
-      page,
-      showsData.count,
-      showsData.shows.length,
-    );
-
-    setCountHeaderText(showNumCount);
-  }, [showsData.shows]);
-
-  useEffect(() => {
     fetchShowsData({ selections, page });
   }, []);
 
@@ -152,26 +141,12 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
           areSelectionsDefault={areSelectionsDefault}
         />
         <div className="shows-footer-wrapper">
-          <section className="show-section">
-            <div className="show-section_entry-count">
-              <span>{countHeaderText}</span>
-            </div>
-            {isLoadingShows || (!isLoadingShows && showsData.count == 0) ? (
-              <section className="show-section show-section_loading">
-                <span>{placeholderContent}</span>
-              </section>
-            ) : (
-              <div className="show-list-wrapper">
-                {showsData.shows.map(show => (
-                  <ShowCard
-                    key={`${show.mal_id}_show-card`}
-                    show={show}
-                    ratingsMap={ratingsMap}
-                  />
-                ))}
-              </div>
-            )}
-          </section>
+          <ShowCards
+            page={page}
+            showsData={showsData}
+            isLoadingShows={isLoadingShows}
+            ratingsMap={ratingsMap}
+          />
           {showFooter && (
             <PaginationFooter
               page={page}

@@ -5,9 +5,9 @@ import {
   DEMOGRAPHICS_COLOR,
   GENRES_COLOR,
   THEMES_COLOR,
-} from '../../constants/constants';
+} from '../../../constants/constants';
 
-import '../../styles/ShowCard.css';
+import '../../../styles/ShowCard.css';
 
 interface ShowCardTagsProps {
   demographics: string[];

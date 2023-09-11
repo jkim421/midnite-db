@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ShowType } from '../../types/showTypes';
+import { ShowType } from '../../../types/showTypes';
 
 import ShowCardImage from './ShowCardImage';
 import ShowCardDetails from './ShowCardDetails';
@@ -8,7 +8,7 @@ import ShowCardTitleStats from './ShowCardTitleStats';
 import ShowCardTags from './ShowCardTags';
 import ShowCardSynopsis from './ShowCardSynopsis';
 
-import '../../styles/ShowCard.css';
+import '../../../styles/ShowCard.css';
 
 interface ShowCardProps {
   show: ShowType;

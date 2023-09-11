@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { DownCaret, UpCaret } from '../icons';
+import { DownCaret, UpCaret } from '../../icons';
 
 interface ShowCardSynopsisProps {
   synopsis?: string;

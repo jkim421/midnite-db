@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ShowYears } from '../../types/showTypes';
+import { ShowYears } from '../../../types/showTypes';
 
-import '../../styles/ShowCard.css';
+import '../../../styles/ShowCard.css';
 
 interface ShowCardDetailsProps {
   years: ShowYears;

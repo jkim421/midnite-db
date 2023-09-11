@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ShowImages } from '../../types/showTypes';
+import { ShowImages } from '../../../types/showTypes';
 
-import '../../styles/ShowCard.css';
+import '../../../styles/ShowCard.css';
 
 interface ShowCardImageProps {
   images: ShowImages;

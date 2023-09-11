@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ShowTitles } from '../../types/showTypes';
+import { ShowTitles } from '../../../types/showTypes';
 
 interface ShowCardTitleStatsProps {
   title: string;
