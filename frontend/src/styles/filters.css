@@ -19,7 +19,7 @@
   justify-content: space-between;
   align-items: center;
   height: 56px;
-  padding: 0px 24px;
+  padding: 1px 24px 0;
   box-sizing: border-box;
   border-bottom: 1px solid var(--border-color);
 }
@@ -148,19 +148,22 @@
 .multiselect-filter_clause-btn {
   margin: 4px 0 8px 0;
   padding: 4px 8px;
-  border-radius: 4px;
+  color: white;
+  background-color: var(--btn-color);
   border: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
   &:hover {
     cursor: pointer;
-    background-color: var(--border-color)
+    background-color: var(--btn-hover-color);
   }
 }
 
 .multiselect-filter_clause-btn:disabled {
   color: lightgrey;
-  background-color: grey;
+  background-color: #4F4F4F;
   &:hover {
     cursor:not-allowed;
-    background-color: grey;
+    background-color: #4F4F4F;
   }
 }
