@@ -1,10 +1,55 @@
 .FiltersPanel {
+  position: relative;
   height: calc(100vh - 52px);
-  min-width: 348px;
-  max-width: 348px;
+  min-width: var(--filter-panel-width);
+  max-width: var(--filter-panel-width);
   box-sizing: border-box;
   border-right: 1px solid var(--border-color);
-  background-color: var(--filters-modal-color)
+  background-color: var(--filters-modal-color);
+  transition: max-width 0.3s, min-width 0.3s;
+  overflow-x: hidden;
+}
+
+.FiltersPanel_closed {
+  min-width: 0;
+  max-width: 0;
+}
+
+.filters-panel_close-btn {
+  position: absolute;
+  top: 8px;
+  left: calc(var(--filter-panel-width) - 20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  background-color: var(--btn-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  z-index: 5;
+  transition: background-color 0.2s, left 0.3s;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--btn-hover-color);
+  }
+}
+
+.filters-panel_close-btn_closed {
+  left: -16px;
+  &:hover {
+    animation: bounceRight 1.2s ease-in infinite;
+}
+}
+
+.filter-panel_toggle-icon svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16px;
+  width: 16px;
+  fill: white;
+  fill: lightgrey;
 }
 
 .filters-panel_filters-wrapper {
@@ -12,6 +57,7 @@
   padding: 12px 24px 24px;
   box-sizing: border-box;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .filters-panel-buttons {
@@ -19,6 +65,8 @@
   justify-content: space-between;
   align-items: center;
   height: 56px;
+  min-width: var(--filter-panel-width);
+  max-width: var(--filter-panel-width);
   padding: 1px 24px 0;
   box-sizing: border-box;
   border-bottom: 1px solid var(--border-color);
@@ -32,6 +80,7 @@
   border: none;
   border-radius: 4px;
   transition: background-color 0.2s;
+  white-space: pre;
   &:hover {
     cursor: pointer;
     background-color: var(--btn-hover-color);
@@ -42,10 +91,11 @@
   font-size: 11px;
   color: lightgray;
   cursor: pointer;
-  margin-left: 12px;
+  margin: 0 8px 0 12px;
   padding: 4px 8px;
   border-radius: 4px;
   transition: background-color 0.2s;
+  white-space: pre;
   &:hover {
     background-color: var(--btn-color);
   }
@@ -59,7 +109,8 @@
 .multiselect-filter_header_tag {
   margin-left: 16px;
   height: 12px;
-  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
   border-radius: 4px;
 }
 
@@ -68,6 +119,7 @@
   color: white;
   cursor: default;
   font-size: 14px;
+  white-space: pre;
 }
 
 .multiselect-filter-wrapper {
@@ -113,6 +165,7 @@
   padding: 0 4px 0 12px;
   font-size: 12px;
   color: white;
+  white-space: pre;
   &:hover {
     cursor: inherit;
   }
@@ -153,6 +206,7 @@
   border: none;
   border-radius: 4px;
   transition: background-color 0.2s;
+  white-space: pre;
   &:hover {
     cursor: pointer;
     background-color: var(--btn-hover-color);
@@ -165,5 +219,26 @@
   &:hover {
     cursor:not-allowed;
     background-color: #4F4F4F;
+  }
+}
+
+@keyframes bounceRight {
+  0% {
+    transform: translate(0, 0);
+  }
+  15% {
+    transform: translate(4px, 0);
+  }
+  30% {
+    transform: translate(0, 0px);
+  }
+  45% {
+    transform: translate(4px, 0);
+  }
+  60% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }

@@ -4,6 +4,7 @@
   min-width: 480px;
   margin: 12px 12px 24px;
   padding: 24px 24px 0;
+  box-sizing: border-box;
   border-radius: 4px;
   border: 2px solid var(--show-card-border-color);
   background-color: var(--shows-card-color);
@@ -60,6 +61,7 @@
 .show-card_details-row_info_title-wrapper {
   flex-grow: 1;
   margin-bottom: 8px;
+  overflow-wrap: anywhere;
 }
 
 .show-card_details-row_info_default-title {

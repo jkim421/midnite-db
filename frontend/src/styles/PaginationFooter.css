@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   height: 44px;
-  padding:  12px;
+  padding:  12px 12px 12px 24px;
   box-sizing: border-box;
   background-color: var(--footer-color);
   border-top: 1px solid var(--border-color);

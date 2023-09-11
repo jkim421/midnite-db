@@ -5,21 +5,24 @@
 }
 
 .app-content {
+  position: relative;
   display: flex;
   height: calc(100vh - 52px);
+  width: 100vw;
 }
 
 .shows-footer-wrapper {
   display: flex;
   flex-direction: column;
-  width: calc(100vw - 348px);
+  flex-grow: 1;
   background-color: var(--shows-section-color);
+  overflow-x: hidden;
 }
 
 .show-section {
   position: relative;
   height: calc(100vh - 52px - 44px);
-  width: calc(100vw - 348px);
+  width: 100%;
   box-sizing: border-box;
   color: white;
 }
@@ -38,8 +41,8 @@
   display: flex;
   align-items: center;
   height: 36px;
-  width: calc(100vw - 348px);
-  padding: 8px 16px;
+  width: 100%;
+  padding: 8px 24px 8px 40px;
   box-sizing: border-box;
   font-size: 13px;
   border-bottom: 1px solid var(--border-color);
