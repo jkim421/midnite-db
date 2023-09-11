@@ -18,64 +18,19 @@ import PaginationFooter from '../PaginationFooter';
 import ShowCard from '../ShowCard';
 
 import fetchShows from '../../utils/fetchShows';
-import { PAGE_SIZE } from '../../constants/constants';
+import {
+  getCleanedSelections,
+  getRatingsMap,
+  getShowNumCount,
+  defaultSelections,
+  currentYear,
+} from './utils';
 import '../../styles/Main.css';
 
 interface MainProps {
   isLoadingFilters: boolean;
   filters: FiltersType;
 }
-
-const getCleanedSelections = (selections: FilterSelectionsStateType) => {
-  // if no clauses selected, use current selections as "first" clause
-  const cleanedSelections = { ...selections };
-  const { currentGenre, currentTheme } = selections;
-
-  const useCurrentGenre =
-    currentGenre.length > 0 && selections.genre.length === 0;
-
-  const useCurrentTheme =
-    currentTheme.length > 0 && selections.theme.length === 0;
-
-  if (useCurrentGenre) {
-    cleanedSelections.genre = [currentGenre];
-  }
-
-  if (useCurrentTheme) {
-    cleanedSelections.theme = [currentTheme];
-  }
-
-  return cleanedSelections;
-};
-
-const getRatingsMap = (ratings: FilterOptionType[] = []) =>
-  ratings.reduce(
-    (acc, rating) => {
-      const { value, alias = '' } = rating;
-
-      acc[value] = alias;
-
-      return acc;
-    },
-    {} as { [key: string]: string },
-  );
-
-const Main = ({ filters, isLoadingFilters }: MainProps) => {
-  const currentYear = new Date().getFullYear();
-
-  const defaultSelections = {
-    type: [],
-    status: [],
-    rating: [],
-    malScore: [0, 10],
-    years: [1917, currentYear],
-    demographic: [],
-    genre: [],
-    currentGenre: [],
-    theme: [],
-    currentTheme: [],
-    studio: '',
-  } as FilterSelectionsStateType;
 
 const Main = ({ filters, isLoadingFilters }: MainProps) => {
   const [selections, setSelections] =
@@ -91,6 +46,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   });
 
   const [page, setPage] = useState<number>(1);
+  const [countHeaderText, setCountHeaderText] = useState<string>('No entries');
 
   const fetchShowsData: FetchShowsDataType = async ({
     selections,
@@ -153,6 +109,16 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   }, [page]);
 
   useEffect(() => {
+    const showNumCount = getShowNumCount(
+      page,
+      showsData.count,
+      showsData.shows.length,
+    );
+
+    setCountHeaderText(showNumCount);
+  }, [showsData.shows]);
+
+  useEffect(() => {
     fetchShowsData({ selections, page });
   }, []);
 
@@ -162,10 +128,11 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   const ratingsMap = getRatingsMap(filters.rating as FilterOptionType[]);
 
   const placeholderContent = isLoadingShows
-    ? 'Loading entries...'
+    ? 'Fetching entries...'
     : 'No matching entries.';
 
   const areSelectionsDefault = _.isEqual(selections, defaultSelections);
+
   return (
     <main className="app-wrapper">
       <MainHeader />
@@ -181,13 +148,16 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
           setPage={setPage}
           areSelectionsDefault={areSelectionsDefault}
         />
-        <div className="shows-wrapper">
-          {isLoadingShows || (!isLoadingShows && showsData.count == 0) ? (
-            <section className="show-section show-section_loading">
-              <span>{placeholderContent}</span>
-            </section>
-          ) : (
-            <section className="show-section">
+        <div className="shows-footer-wrapper">
+          <section className="show-section">
+            <div className="show-section_entry-count">
+              <span>{countHeaderText}</span>
+            </div>
+            {isLoadingShows || (!isLoadingShows && showsData.count == 0) ? (
+              <section className="show-section show-section_loading">
+                <span>{placeholderContent}</span>
+              </section>
+            ) : (
               <div className="show-list-wrapper">
                 {showsData.shows.map(show => (
                   <ShowCard
@@ -197,8 +167,8 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
                   />
                 ))}
               </div>
-            </section>
-          )}
+            )}
+          </section>
           {showFooter && (
             <PaginationFooter
               page={page}
