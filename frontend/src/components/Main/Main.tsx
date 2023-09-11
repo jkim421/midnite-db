@@ -16,8 +16,6 @@ import MainHeader from './MainHeader';
 import FiltersPanel from '../FiltersPanel';
 import PaginationFooter from '../PaginationFooter';
 import ShowCards from '../ShowCards';
-import ShowCard from '../ShowCards/ShowCard';
-import Spinner from '../Spinner';
 
 import fetchShows from '../../utils/fetchShows';
 import {
@@ -116,12 +114,6 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   const isLoadingShows = showsData.loading;
 
   const ratingsMap = getRatingsMap(filters.rating as FilterOptionType[]);
-
-  const placeholderContent = isLoadingShows ? (
-    <Spinner />
-  ) : (
-    'No matching entries.'
-  );
 
   const areSelectionsDefault = _.isEqual(selections, defaultSelections);
 
