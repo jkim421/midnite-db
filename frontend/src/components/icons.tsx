@@ -43,11 +43,9 @@ export const CloseIcon = ({
   onClick,
   tagColor = 'white',
   style = {},
-  classes,
+  classes = [],
 }: CloseIconProps) => {
-  let className = 'filter-clause-tag_remove';
-
-  if (classes) className = className.concat(` ${classes.join(' ')}`);
+  const className = classes.join(' ');
 
   return (
     <div

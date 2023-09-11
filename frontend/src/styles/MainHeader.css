@@ -56,12 +56,17 @@
 }
 
 .about-header_close-btn {
-  height: 16px;
-  width: 16px;
-  margin: 0;
-  padding: 8px;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  height: 24px;
+  width: 24px;
+  margin: 0;
+  padding: 4px;
   transition: background-color 0.2s;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .about-header_about-header {
