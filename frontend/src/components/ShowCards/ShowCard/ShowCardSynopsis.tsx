@@ -31,6 +31,10 @@ const ShowCardSynopsis = ({ synopsis }: ShowCardSynopsisProps) => {
 
   const cleanedSynonpsis = synopsis.replace('[Written by MAL Rewrite]', '');
 
+  const iconClasses = isOpen
+    ? 'show-card_synopsis_toggle_icon-close'
+    : 'show-card_synopsis_toggle_icon-open';
+
   return (
     <div className="show-card_synopsis">
       <div
@@ -38,7 +42,9 @@ const ShowCardSynopsis = ({ synopsis }: ShowCardSynopsisProps) => {
         onClick={onClick}>
         <div className="show-card_synopsis_toggle_label">
           <span style={{ marginRight: 12 }}>Synopsis</span>
-          <Icon />
+          <span className={iconClasses}>
+            <Icon />
+          </span>
         </div>
       </div>
       <div className={contentClasses}>

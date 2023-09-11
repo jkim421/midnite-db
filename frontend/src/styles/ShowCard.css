@@ -132,6 +132,16 @@
   }
 }
 
+.show-card_synopsis_toggle:hover .show-card_synopsis_toggle_icon-open {
+  animation: bounceDown 1.2s ease-in infinite;
+  animation-delay: 0.3s;
+}
+
+.show-card_synopsis_toggle:hover .show-card_synopsis_toggle_icon-close {
+  animation: bounceUp 1.2s ease-in infinite;
+  animation-delay: 0.3s;
+}
+
 .show-card_synopsis_toggle_label {
   display: flex;
   justify-content: center;
@@ -170,4 +180,46 @@
   margin-bottom: 24px;
   /* opening transition */
   transition: max-height 0.3s cubic-bezier(1, 0.5, 1, 0);
+}
+
+@keyframes bounceDown {
+  0% {
+    transform: translate(0, 0);
+  }
+  15% {
+    transform: translate(0, 1.5px);
+  }
+  30% {
+    transform: translate(0, 0px);
+  }
+  45% {
+    transform: translate(0, 1.5px);
+  }
+  60% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes bounceUp {
+  0% {
+    transform: translate(0, 0);
+  }
+  15% {
+    transform: translate(0, -1.5px);
+  }
+  30% {
+    transform: translate(0, 0px);
+  }
+  45% {
+    transform: translate(0, -1.5px);
+  }
+  60% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
