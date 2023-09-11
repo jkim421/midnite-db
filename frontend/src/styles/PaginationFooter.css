@@ -4,7 +4,7 @@
   height: 44px;
   padding:  12px;
   box-sizing: border-box;
-  background: var(--footer-color);
+  background-color: var(--footer-color);
   border-top: 1px solid var(--border-color);
   color: white;
   z-index: 10;
