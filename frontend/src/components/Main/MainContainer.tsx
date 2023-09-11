@@ -26,7 +26,7 @@ const MainContainer = () => {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchFiltersData = async () => {
       const serverUrl = process.env.REACT_APP_SERVER_URL || '';
 
       const data = await fetchFilters(serverUrl);
@@ -37,7 +37,7 @@ const MainContainer = () => {
       });
     };
 
-    fetchData();
+    fetchFiltersData();
   }, []);
 
   return (

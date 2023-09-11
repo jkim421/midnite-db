@@ -33,7 +33,7 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
     themes,
     demographics,
     synopsis,
-    mal_id,
+    // mal_id,
     // status,
     // source,
     // members,
