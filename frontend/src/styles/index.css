@@ -14,15 +14,17 @@ code {
 }
 
 :root {
-  --app-color: #2C2F3A;
+  --shows-color: #383A4C;
+  --filters-modal-color: #2C2F3A;
   --app-header-color: #252841;
-  --footer-color: #C9C9C9;
+  --footer-color: #252841;
   --border-color: #5A5A7C;
   --show-card-border-color: #9292B0;
   --mal-color: #2E51A2;
   --accent-color: #94ABE0;
-  --hover-bg-color: #404254;
-  --btn-hover-bg-color: #CFCFCF;
+  --icon-hover-bg-color: #474B76;
+  --btn-color: #474B76;
+  --btn-hover-color: #505C86;
 }
 
 ::-webkit-scrollbar {
@@ -37,8 +39,8 @@ code {
 }
 
 .icon-hover {
+  border-radius: 4px;
   &:hover {
-    border-radius: 4px;
-    background: var(--hover-bg-color);
+    background: var(--icon-hover-bg-color);
   }
 }

@@ -45,7 +45,7 @@ const ClauseTags = ({
             }}>
             <span className="filter-clause-tag_content">{content}</span>
             <CloseIcon
-              hoverClass="icon-hover"
+              classes={['icon-hover']}
               onClick={removeClauseFn}
               tagColor={tagColor}
             />

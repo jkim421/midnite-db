@@ -25,15 +25,8 @@ const MainHeaderAbout = () => {
           <div className="about-header_about-header">
             <div>About midnite-db</div>
             <CloseIcon
-              hoverClass="icon-hover"
+              classes={['icon-hover', 'about-header_close-btn']}
               onClick={onClick}
-              style={{
-                height: 16,
-                width: 16,
-                margin: 0,
-                padding: 8,
-                justifyContent: 'center',
-              }}
             />
           </div>
           <div>

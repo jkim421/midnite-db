@@ -1,5 +1,4 @@
 .app-wrapper {
-  background-color: var(--app-color);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,6 +13,7 @@
   display: flex;
   flex-direction: column;
   width: calc(100vw - 364px);
+  background-color: var(--shows-color);
 }
 
 .app-header {
@@ -63,7 +63,7 @@
   height: 0px;
   width: 400px;
   overflow: hidden;
-  background-color: var(--app-color);
+  background-color: var(--filters-modal-color);
   border: 0px solid transparent;
   border-radius: 4px;
   box-shadow: none;
@@ -75,6 +75,15 @@
   height: 380px;
   border: 1px  solid white;
   box-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
+}
+
+.about-header_close-btn {
+  height: 16px;
+  width: 16px;
+  margin: 0;
+  padding: 8px;
+  justify-content: center;
+  transition: background-color 0.2s;
 }
 
 .about-header_about-header {
