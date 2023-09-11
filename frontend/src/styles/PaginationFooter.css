@@ -1,12 +1,13 @@
 .pagination-footer_wrapper {
   display: flex;
   align-items: center;
-  height: 48px;
+  height: 44px;
   padding:  12px;
   box-sizing: border-box;
   background: var(--footer-color);
   border-top: 1px solid var(--border-color);
   color: white;
+  z-index: 10;
 }
 
 .pagination-footer_arrow {

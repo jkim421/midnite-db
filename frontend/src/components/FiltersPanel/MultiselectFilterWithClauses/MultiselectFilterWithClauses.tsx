@@ -9,7 +9,7 @@ import CheckboxColumns from '../CheckboxColumns';
 import ClauseTags from './ClauseTags';
 
 import { getIsMultiColumn } from '../../../utils/filterUtils';
-import { GENRES_COLOR, THEMES_COLOR } from '../../../constants/colors';
+import { GENRES_COLOR, THEMES_COLOR } from '../../../constants/constants';
 
 import '../../../styles/filters.css';
 

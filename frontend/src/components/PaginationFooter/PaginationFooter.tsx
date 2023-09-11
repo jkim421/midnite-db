@@ -1,6 +1,7 @@
 import React, { useState, Dispatch, SetStateAction, ChangeEvent } from 'react';
 
 import { LeftArrow, RightArrow } from '../icons';
+import { PAGE_SIZE } from '../../constants/constants';
 
 import '../../styles/PaginationFooter.css';
 
@@ -9,8 +10,6 @@ interface PaginationFooterProps {
   count: number;
   setPage: Dispatch<SetStateAction<number>>;
 }
-
-const PAGE_SIZE = 50;
 
 const PaginationFooter = ({ page, count, setPage }: PaginationFooterProps) => {
   const [pageInput, setPageInput] = useState<number | undefined>(undefined);

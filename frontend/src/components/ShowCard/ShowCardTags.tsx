@@ -5,7 +5,7 @@ import {
   DEMOGRAPHICS_COLOR,
   GENRES_COLOR,
   THEMES_COLOR,
-} from '../../constants/colors';
+} from '../../constants/constants';
 
 import '../../styles/ShowCard.css';
 

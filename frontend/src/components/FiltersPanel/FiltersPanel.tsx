@@ -83,12 +83,7 @@ const FiltersPanel = ({
   filterPanelsFetch,
   areSelectionsDefault,
 }: FiltersPanelProps) => {
-  if (isLoadingFilters)
-    return (
-      <section className="FiltersPanel filters-panel_loading">
-        <span>Loading filters...</span>
-      </section>
-    );
+  if (isLoadingFilters) return <section className="FiltersPanel" />;
 
   const onSubmit = async () => {
     filterPanelsFetch({ resetPage: true });
@@ -135,16 +130,13 @@ const FiltersPanel = ({
           showReset
         />
         {MULTISELECT_FILTERS_MAP.map(
-          (
-            {
-              title,
-              selectionsKey,
-              currentSelectionsKey = '',
-              MultiselectComponent,
-              sortFn,
-            },
-            idx,
-          ) => {
+          ({
+            title,
+            selectionsKey,
+            currentSelectionsKey = '',
+            MultiselectComponent,
+            sortFn,
+          }) => {
             let filterData = filters[selectionsKey] as FilterOptionType[];
             if (sortFn) filterData = sortFn(filterData);
 

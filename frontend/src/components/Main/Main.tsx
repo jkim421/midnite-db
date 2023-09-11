@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 
 import {
@@ -18,6 +18,7 @@ import PaginationFooter from '../PaginationFooter';
 import ShowCard from '../ShowCard';
 
 import fetchShows from '../../utils/fetchShows';
+import { PAGE_SIZE } from '../../constants/constants';
 import '../../styles/Main.css';
 
 interface MainProps {
@@ -76,6 +77,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
     studio: '',
   } as FilterSelectionsStateType;
 
+const Main = ({ filters, isLoadingFilters }: MainProps) => {
   const [selections, setSelections] =
     useState<FilterSelectionsStateType>(defaultSelections);
 
@@ -166,7 +168,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   const areSelectionsDefault = _.isEqual(selections, defaultSelections);
   return (
     <main className="app-wrapper">
-      <MainHeader count={showsData.count} />
+      <MainHeader />
       <div className="app-content">
         <FiltersPanel
           isLoadingFilters={isLoadingFilters}

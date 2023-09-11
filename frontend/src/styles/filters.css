@@ -1,25 +1,17 @@
 .FiltersPanel {
-  height: calc(100vh - 64px);
-  min-width: 364px;
-  max-width: 364px;
+  height: calc(100vh - 52px);
+  min-width: 348px;
+  max-width: 348px;
   box-sizing: border-box;
   border-right: 1px solid var(--border-color);
   background-color: var(--filters-modal-color)
 }
 
 .filters-panel_filters-wrapper {
-  height: calc(100vh - 64px - 56px);
+  height: calc(100vh - 52px - 56px);
   padding: 12px 24px 24px;
   box-sizing: border-box;
   overflow-y: scroll;
-}
-
-.filters-panel_loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  color: white;
 }
 
 .filters-panel-buttons {

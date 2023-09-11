@@ -8,7 +8,7 @@ import {
 import CheckboxColumns from '../CheckboxColumns/CheckboxColumns';
 
 import { getIsMultiColumn } from '../../../utils/filterUtils';
-import { DEMOGRAPHICS_COLOR } from '../../../constants/colors';
+import { DEMOGRAPHICS_COLOR } from '../../../constants/constants';
 
 import '../../../styles/filters.css';
 

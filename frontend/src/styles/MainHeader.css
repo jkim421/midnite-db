@@ -1,0 +1,95 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  padding: 24px;
+  box-sizing: border-box;
+  background: var(--app-header-color);
+  color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.app-header_title {
+  display: flex;
+  align-items: center;
+}
+
+.app-header_about-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  border: 1px solid white;
+  font-weight: 700;
+  user-select: none;
+  &:hover {
+    cursor: pointer;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+}
+
+.app-header_about-modal {
+  position: absolute;
+  top: 54px;
+  right: 50px;
+  height: 0px;
+  width: 400px;
+  overflow: hidden;
+  background-color: var(--filters-modal-color);
+  border: 0px solid transparent;
+  border-radius: 4px;
+  box-shadow: none;
+  z-index: 20;
+  transition: height 0.2s ease-out, border 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.app-header_about-modal-open {
+  height: 380px;
+  border: 1px  solid white;
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
+}
+
+.about-header_close-btn {
+  height: 16px;
+  width: 16px;
+  margin: 0;
+  padding: 8px;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.about-header_about-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: underline;
+}
+
+.about-header_profile-link {
+  color: white;
+  text-decoration-style: dotted;
+  text-decoration-color: white;
+}
+
+.about-header_about-section-title {
+  margin-top: 16px;
+  margin-bottom: 2px;
+}
+
+.about-header_about-section-subtitle {
+  margin-top: 4px;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.app-header_about-list {
+  margin-top: 8px;
+  padding: 0 0 0 24px;
+  font-size: 15px;
+}
