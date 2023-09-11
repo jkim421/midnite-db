@@ -6,6 +6,7 @@ import {
   FiltersType,
   FilterSelectionsStateType,
 } from '../../types/filterTypes';
+import { FilterPanelsFetchType } from '../../types/fetchTypes';
 
 import MultiselectFilter from './MultiselectFilter';
 import MultiselectFilterWithClauses from './MultiselectFilterWithClauses';
@@ -20,8 +21,9 @@ interface FiltersPanelProps {
   selections: FilterSelectionsStateType;
   setSelections: Dispatch<SetStateAction<FilterSelectionsStateType>>;
   currentYear: number;
-  fetchData: (resetPage?: boolean, resetFilters?: boolean) => void;
+  filterPanelsFetch: FilterPanelsFetchType;
   setPage: Dispatch<SetStateAction<number>>;
+  areSelectionsDefault: boolean;
 }
 
 const sortFiltersBySortKey = (data: FilterOptionType[]) =>
@@ -78,7 +80,8 @@ const FiltersPanel = ({
   selections,
   setSelections,
   currentYear,
-  fetchData,
+  filterPanelsFetch,
+  areSelectionsDefault,
 }: FiltersPanelProps) => {
   if (isLoadingFilters)
     return (
@@ -88,11 +91,13 @@ const FiltersPanel = ({
     );
 
   const onSubmit = async () => {
-    fetchData(true);
+    filterPanelsFetch({ resetPage: true });
   };
 
   const resetFilters = () => {
-    fetchData(true, true);
+    if (!areSelectionsDefault) {
+      filterPanelsFetch({ resetPage: true, resetFilters: true });
+    }
   };
 
   return (

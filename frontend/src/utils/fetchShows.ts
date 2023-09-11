@@ -14,7 +14,12 @@ const fetchShows = async (filters: FilterSelectionsStateType, page: number) => {
 
     const showsData = await response.json();
 
-    return showsData;
+    const { count, shows } = showsData
+
+    return {
+      count,
+      shows,
+    };
   } catch (error) {
     console.error(error);
 

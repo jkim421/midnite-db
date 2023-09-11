@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import _ from 'lodash';
 
 import {
   FilterOptionType,
@@ -7,6 +7,10 @@ import {
   FilterSelectionsStateType,
 } from '../../types/filterTypes';
 import { ShowStateType } from '../../types/showTypes';
+import {
+  FetchShowsDataType,
+  FilterPanelsFetchType,
+} from '../../types/fetchTypes';
 
 import MainHeader from './MainHeader';
 import FiltersPanel from '../FiltersPanel';
@@ -21,9 +25,9 @@ interface MainProps {
   filters: FiltersType;
 }
 
-const getFinalSelections = (selections: FilterSelectionsStateType) => {
+const getCleanedSelections = (selections: FilterSelectionsStateType) => {
   // if no clauses selected, use current selections as "first" clause
-  const finalSelections = { ...selections };
+  const cleanedSelections = { ...selections };
   const { currentGenre, currentTheme } = selections;
 
   const useCurrentGenre =
@@ -33,14 +37,14 @@ const getFinalSelections = (selections: FilterSelectionsStateType) => {
     currentTheme.length > 0 && selections.theme.length === 0;
 
   if (useCurrentGenre) {
-    finalSelections.genre = [currentGenre];
+    cleanedSelections.genre = [currentGenre];
   }
 
   if (useCurrentTheme) {
-    finalSelections.theme = [currentTheme];
+    cleanedSelections.theme = [currentTheme];
   }
 
-  return finalSelections;
+  return cleanedSelections;
 };
 
 const getRatingsMap = (ratings: FilterOptionType[] = []) =>
@@ -75,6 +79,9 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   const [selections, setSelections] =
     useState<FilterSelectionsStateType>(defaultSelections);
 
+  const [fetchedSelections, setFetchedSelections] =
+    useState<FilterSelectionsStateType>(defaultSelections);
+
   const [showsData, setShowsData] = useState<ShowStateType>({
     loading: false,
     count: 0,
@@ -83,10 +90,32 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
 
   const [page, setPage] = useState<number>(1);
 
-  const fetchData = async (resetPage = false, resetFilters = false) => {
-    const finalSelections = resetFilters
+  const fetchShowsData: FetchShowsDataType = async ({
+    selections,
+    page,
+    areSelectionsCleaned = false,
+  }) => {
+    const cleanedSelections = areSelectionsCleaned
+      ? selections
+      : getCleanedSelections(selections);
+
+    setShowsData(prevState => ({
+      ...prevState,
+      loading: true,
+    }));
+
+    const { count, shows } = await fetchShows(cleanedSelections, page);
+
+    setShowsData({ loading: false, count, shows });
+  };
+
+  const filterPanelsFetch: FilterPanelsFetchType = async ({
+    resetPage = false,
+    resetFilters = false,
+  } = {}) => {
+    const cleanedSelections = resetFilters
       ? defaultSelections
-      : getFinalSelections(selections);
+      : getCleanedSelections(selections);
 
     if (resetFilters) {
       setSelections(defaultSelections);
@@ -99,20 +128,31 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
       setPage(1);
     }
 
-    setShowsData(prevState => ({
-      ...prevState,
-      loading: true,
-    }));
+    const areSelectionsPrevFetched = _.isEqual(
+      cleanedSelections,
+      fetchedSelections,
+    );
 
-    const { count, shows } = await fetchShows(finalSelections, pageToFetch);
+    if (!areSelectionsPrevFetched) {
+      setFetchedSelections(cleanedSelections);
 
-    setShowsData({ loading: false, count, shows });
+      fetchShowsData({
+        selections: cleanedSelections,
+        page: pageToFetch,
+        areSelectionsCleaned: true,
+      });
+    }
   };
 
   useEffect(() => {
-    // data is fetched after initial render here
-    fetchData();
+    if (showsData.count) {
+      fetchShowsData({ selections, page });
+    }
   }, [page]);
+
+  useEffect(() => {
+    fetchShowsData({ selections, page });
+  }, []);
 
   const showFooter = showsData.shows.length > 0;
   const isLoadingShows = showsData.loading;
@@ -123,6 +163,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
     ? 'Loading entries...'
     : 'No matching entries.';
 
+  const areSelectionsDefault = _.isEqual(selections, defaultSelections);
   return (
     <main className="app-wrapper">
       <MainHeader count={showsData.count} />
@@ -134,8 +175,9 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
           selections={selections}
           setSelections={setSelections}
           currentYear={currentYear}
-          fetchData={fetchData}
+          filterPanelsFetch={filterPanelsFetch}
           setPage={setPage}
+          areSelectionsDefault={areSelectionsDefault}
         />
         <div className="shows-wrapper">
           {isLoadingShows || (!isLoadingShows && showsData.count == 0) ? (
