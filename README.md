@@ -9,6 +9,7 @@ As a longtime fan of animated media, I would often search the MAL database to di
 
 Client - React + TypeScript  
 Server - FastAPI (Python)  
+Database - MongoDB  
 MAL Scraper ([link](https://github.com/jkim421/midnite-scraper)) - Python
 <br>
 <br>
