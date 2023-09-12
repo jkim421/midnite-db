@@ -43,18 +43,8 @@ const ShowCards = ({
 }: ShowCardsType) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
-  const [countHeaderText, setCountHeaderText] = useState<string>('No entries');
   const [wrapperWidth, setWrapperWidth] = useState(0);
-
-  useEffect(() => {
-    const showNumCount = getShowNumCount(
-      page,
-      showsData.count,
-      showsData.shows.length,
-    );
-
-    setCountHeaderText(showNumCount);
-  }, [showsData.shows]);
+  const [countHeaderText, setCountHeaderText] = useState<string>('No entries');
 
   useEffect(() => {
     const handleResize = () => {
@@ -79,6 +69,16 @@ const ShowCards = ({
       setWrapperWidth(wrapperRef.current.offsetWidth);
     }
   }, [isFiltersOpen]);
+
+  useLayoutEffect(() => {
+    const showNumCount = getShowNumCount(
+      page,
+      showsData.count,
+      showsData.shows.length,
+    );
+
+    setCountHeaderText(showNumCount);
+  }, [showsData.shows]);
 
   const placeholderContent = isLoadingShows ? (
     <Spinner />
