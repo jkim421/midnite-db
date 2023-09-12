@@ -25,6 +25,8 @@ interface FiltersPanelProps {
   filterPanelsFetch: FilterPanelsFetchType;
   setPage: Dispatch<SetStateAction<number>>;
   areSelectionsDefault: boolean;
+  isFiltersOpen: boolean;
+  setIsFiltersOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const sortFiltersBySortKey = (data: FilterOptionType[]) =>
@@ -83,9 +85,9 @@ const FiltersPanel = ({
   currentYear,
   filterPanelsFetch,
   areSelectionsDefault,
+  isFiltersOpen,
+  setIsFiltersOpen,
 }: FiltersPanelProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-
   if (isLoadingFilters) return <section className="FiltersPanel" />;
 
   const onSubmit = async () => {
@@ -98,12 +100,12 @@ const FiltersPanel = ({
     }
   };
 
-  const togglePanel = () => setIsOpen(!isOpen);
+  const togglePanel = () => setIsFiltersOpen(!isFiltersOpen);
 
   let wrapperClasses = 'FiltersPanel';
   let closeBtnClasses = 'filters-panel_close-btn';
 
-  if (!isOpen) {
+  if (!isFiltersOpen) {
     wrapperClasses = wrapperClasses.concat(' FiltersPanel_closed');
     closeBtnClasses = closeBtnClasses.concat(' filters-panel_close-btn_closed');
   }
@@ -113,7 +115,7 @@ const FiltersPanel = ({
       <div
         className={closeBtnClasses}
         onClick={togglePanel}>
-        {isOpen ? <DoubleLeftArrow /> : <DoubleRightArrow />}
+        {isFiltersOpen ? <DoubleLeftArrow /> : <DoubleRightArrow />}
       </div>
       <div className={wrapperClasses}>
         <div className="filters-panel-buttons">

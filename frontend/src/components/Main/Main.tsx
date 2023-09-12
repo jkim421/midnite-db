@@ -45,6 +45,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   });
 
   const [page, setPage] = useState<number>(1);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(true);
 
   const fetchShowsData: FetchShowsDataType = async ({
     selections,
@@ -131,6 +132,8 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
           filterPanelsFetch={filterPanelsFetch}
           setPage={setPage}
           areSelectionsDefault={areSelectionsDefault}
+          isFiltersOpen={isFiltersOpen}
+          setIsFiltersOpen={setIsFiltersOpen}
         />
         <div className="shows-footer-wrapper">
           <ShowCards
