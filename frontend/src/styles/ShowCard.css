@@ -17,12 +17,14 @@
 .show-card_details-row_image-wrapper {
   position: relative;
   max-width: 120px;
+  min-width: 120px;
   overflow: hidden;
 }
 
 .show-card_details-row_image-hidden {
   visibility: hidden;
   max-width: 0;
+  min-width: 0;
 }
 
 .show-card_details-row_image {
