@@ -1,5 +1,7 @@
 # midnite-db
 
+[Live site](https://www.midnite-db.com)  
+
 `midnite-db` provides a more robust way to search the [MyAnimeList](https://myanimelist.net/anime.php) database.
 
 As a longtime fan of animated media, I would often search the MAL database to discover older or less well known media. However, I was often frustrated with the limited search capabilities available on the site. After scraping the MAL database, I built `midnite-db` to support more specific queries to enabled better targeted searches.
