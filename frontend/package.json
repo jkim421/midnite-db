@@ -51,5 +51,10 @@
     "lint-staged": "^13.2.3",
     "lodash": "^4.17.21",
     "prettier": "^3.0.1"
+  },
+  "overrides": {
+    "react-scripts": {
+      "typescript": "^5"
+    }
   }
 }
