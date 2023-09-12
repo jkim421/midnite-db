@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 
 import { ShowStateType } from '../../types/showTypes';
 
@@ -12,6 +12,7 @@ interface ShowCardsType {
   showsData: ShowStateType;
   isLoadingShows: boolean;
   ratingsMap: { [key: string]: string };
+  isFiltersOpen: boolean;
 }
 
 export const getShowNumCount = (
@@ -38,8 +39,12 @@ const ShowCards = ({
   showsData,
   isLoadingShows,
   ratingsMap,
+  isFiltersOpen,
 }: ShowCardsType) => {
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
   const [countHeaderText, setCountHeaderText] = useState<string>('No entries');
+  const [wrapperWidth, setWrapperWidth] = useState(0);
 
   useEffect(() => {
     const showNumCount = getShowNumCount(
@@ -51,14 +56,42 @@ const ShowCards = ({
     setCountHeaderText(showNumCount);
   }, [showsData.shows]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (wrapperRef.current) {
+        setWrapperWidth(wrapperRef.current.offsetWidth);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    if (wrapperRef.current) {
+      setWrapperWidth(wrapperRef.current.offsetWidth);
+    }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    if (wrapperRef.current) {
+      setWrapperWidth(wrapperRef.current.offsetWidth);
+    }
+  }, [isFiltersOpen]);
+
   const placeholderContent = isLoadingShows ? (
     <Spinner />
   ) : (
     'No matching entries.'
   );
 
+  const shouldHideImg = Boolean(wrapperWidth && wrapperWidth < 600);
+
   return (
-    <section className="show-section">
+    <section
+      className="show-section"
+      ref={wrapperRef}>
       <div className="show-section_entry-count">
         <span>{countHeaderText}</span>
       </div>
@@ -73,6 +106,7 @@ const ShowCards = ({
               key={`${show.mal_id}_show-card`}
               show={show}
               ratingsMap={ratingsMap}
+              shouldHideImg={shouldHideImg}
             />
           ))}
         </div>

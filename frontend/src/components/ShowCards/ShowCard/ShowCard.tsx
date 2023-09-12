@@ -13,9 +13,10 @@ import '../../../styles/ShowCard.css';
 interface ShowCardProps {
   show: ShowType;
   ratingsMap: { [key: string]: string };
+  shouldHideImg: boolean;
 }
 
-const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
+const ShowCard = ({ show, ratingsMap, shouldHideImg }: ShowCardProps) => {
   const {
     url,
     images,
@@ -47,14 +48,19 @@ const ShowCard = ({ show, ratingsMap }: ShowCardProps) => {
 
   const ratingAlias = rating ? ratingsMap[rating] : undefined;
 
+  const detailsRowStyle = shouldHideImg ? { marginLeft: 0 } : {};
+
   return (
     <div className="show-card_wrapper">
       <div className="show-card_details-row">
         <ShowCardImage
           images={images}
           url={url}
+          shouldHideImg={shouldHideImg}
         />
-        <div className="show-card_details-row_info">
+        <div
+          className="show-card_details-row_info"
+          style={detailsRowStyle}>
           <ShowCardTitleStats
             title={defaultTitle}
             titles={titles}

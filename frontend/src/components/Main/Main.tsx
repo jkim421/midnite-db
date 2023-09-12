@@ -141,6 +141,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
             showsData={showsData}
             isLoadingShows={isLoadingShows}
             ratingsMap={ratingsMap}
+            isFiltersOpen={isFiltersOpen}
           />
           {showFooter && (
             <PaginationFooter
