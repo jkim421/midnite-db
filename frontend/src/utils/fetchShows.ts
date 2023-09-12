@@ -1,10 +1,12 @@
 import { FilterSelectionsStateType } from '../types/filterTypes';
 
 const fetchShows = async (filters: FilterSelectionsStateType, page: number) => {
+  const serverUrl = process.env.REACT_APP_SERVER_URL || '';
+
   try {
     const filterParams = encodeURIComponent(JSON.stringify(filters));
 
-    const response = await fetch(`http://localhost:8000/shows/?filters=${filterParams}&page=${page}`, {
+    const response = await fetch(`${serverUrl}/shows/?filters=${filterParams}&page=${page}`, {
       method: 'get',
     })
 
