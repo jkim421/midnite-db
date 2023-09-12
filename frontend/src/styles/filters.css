@@ -6,7 +6,6 @@
   box-sizing: border-box;
   border-right: 1px solid var(--border-color);
   background-color: var(--filters-modal-color);
-  transition: max-width 0.3s, min-width 0.3s;
   overflow-x: hidden;
 }
 
@@ -28,7 +27,7 @@
   border: 1px solid var(--border-color);
   border-radius: 50%;
   z-index: 5;
-  transition: background-color 0.2s, left 0.3s;
+  transition: background-color 0.2s;
   &:hover {
     cursor: pointer;
     background-color: var(--btn-hover-color);
