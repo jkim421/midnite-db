@@ -5,7 +5,7 @@ import { CheckboxColumnProps } from '../../../types/filterTypes';
 
 const COLUMN_CLASS = 'multiselect-filter_column';
 
-const MAX_CLAUSE_LENGTH = 3;
+const MAX_CLAUSE_LENGTH = 5;
 
 const CheckboxColumn = ({
   title,
