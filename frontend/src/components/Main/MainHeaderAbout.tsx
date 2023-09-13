@@ -21,7 +21,7 @@ const MainHeaderAbout = () => {
         <span>?</span>
       </div>
       <div className={aboutClassNames}>
-        <div style={{ padding: '12px 12px 24px 24px' }}>
+        <div className="app-header_about-modal_content">
           <div className="about-header_about-header">
             <div>About midnite-db</div>
             <CloseIcon
@@ -30,41 +30,59 @@ const MainHeaderAbout = () => {
             />
           </div>
           <div>
-            <span>Work in progress, by&nbsp;</span>
-            <a
-              className="about-header_profile-link"
-              href="https://github.com/jkim421"
-              target="blank">
-              <span>John Kim</span>
-            </a>
-          </div>
-          <div style={{ marginTop: 24, textDecoration: 'underline' }}>
-            Filters Guide
-          </div>
-          <div>
-            <div className="about-header_about-section-title">OR Filters</div>
-            <div className="about-header_about-section-subtitle">
-              Option A OR Option B OR ...
+            <div style={{ marginTop: 8 }}>
+              <span>
+                midnite-db provides access to a scraped instance of the&nbsp;
+              </span>
+              <a
+                className="about-header_profile-link"
+                href="https://myanimelist.net/anime.php"
+                target="blank">
+                <span>MyAnimeList</span>
+              </a>
+              <span>
+                &nbsp;media database to enable more powerful queries than are
+                possible through the the MAL site.
+              </span>
             </div>
-            <ul className="app-header_about-list">
-              <li>Media Type</li>
-              <li>Status</li>
-              <li>Rating</li>
-              <li>Demographic</li>
-            </ul>
-          </div>
-          <div>
-            <div className="about-header_about-section-title">
-              AND/OR Filters
+            <div style={{ marginTop: 12 }}>
+              <span>Work in progress, by&nbsp;</span>
+              <a
+                className="about-header_profile-link"
+                href="https://github.com/jkim421"
+                target="blank">
+                <span>John Kim</span>
+              </a>
+              <span>.</span>
             </div>
-            <div className="about-header_about-section-subtitle">
-              <div>If no sets: Option A AND Option B AND ...</div>
-              <div>If 1+ sets: Set A OR Set B OR ...</div>
+            <div style={{ marginTop: 24, textDecoration: 'underline' }}>
+              Filters Guide
             </div>
-            <ul className="app-header_about-list">
-              <li>Genre</li>
-              <li>Theme</li>
-            </ul>
+            <div>
+              <div className="about-header_about-section-title">OR Filters</div>
+              <div className="about-header_about-section-subtitle">
+                Option A OR Option B OR ...
+              </div>
+              <ul className="app-header_about-list">
+                <li>Media Type</li>
+                <li>Status</li>
+                <li>Rating</li>
+                <li>Demographic</li>
+              </ul>
+            </div>
+            <div>
+              <div className="about-header_about-section-title">
+                AND/OR Filters
+              </div>
+              <div className="about-header_about-section-subtitle">
+                <div>If no sets: Option A AND Option B AND ...</div>
+                <div>If 1+ sets: Set A OR Set B OR ...</div>
+              </div>
+              <ul className="app-header_about-list">
+                <li>Genre</li>
+                <li>Theme</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
