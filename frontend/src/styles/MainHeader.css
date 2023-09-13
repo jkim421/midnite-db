@@ -50,9 +50,13 @@
 }
 
 .app-header_about-modal-open {
-  height: 380px;
+  height: 472px;
   border: 1px  solid white;
   box-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
+}
+
+.app-header_about-modal_content {
+  padding: 16px 24px 24px;
 }
 
 .about-header_close-btn {
