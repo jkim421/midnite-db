@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { CloseIcon } from '../icons';
 
-const MainHeaderAbout = () => {
+const HeaderAbout = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
 
   let aboutClassNames = 'app-header_about-modal';
@@ -90,4 +90,4 @@ const MainHeaderAbout = () => {
   );
 };
 
-export default MainHeaderAbout;
+export default HeaderAbout;
