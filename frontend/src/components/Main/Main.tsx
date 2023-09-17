@@ -12,7 +12,7 @@ import {
   FilterPanelsFetchType,
 } from '../../types/fetchTypes';
 
-import MainHeader from './MainHeader';
+import Header from '../Header';
 import FiltersPanel from '../FiltersPanel';
 import PaginationFooter from '../PaginationFooter';
 import ShowCards from '../ShowCards';
@@ -102,14 +102,8 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
   };
 
   useEffect(() => {
-    if (showsData.count) {
-      fetchShowsData({ selections, page });
-    }
-  }, [page]);
-
-  useEffect(() => {
     fetchShowsData({ selections, page });
-  }, []);
+  }, [page]);
 
   const showFooter = showsData.shows.length > 0;
   const isLoadingShows = showsData.loading;
@@ -120,7 +114,7 @@ const Main = ({ filters, isLoadingFilters }: MainProps) => {
 
   return (
     <main className="app-wrapper">
-      <MainHeader />
+      <Header />
       <div className="app-content">
         <FiltersPanel
           isLoadingFilters={isLoadingFilters}

@@ -1,16 +1,16 @@
 import React from 'react';
 
-import MainHeaderAbout from './MainHeaderAbout';
+import HeaderAbout from './HeaderAbout';
 
 import '../../styles/MainHeader.css';
 
-const MainHeader = () => (
+const Header = () => (
   <header className="app-header">
     <div className="app-header_title">
       <h3 style={{ margin: 0 }}>midnite-db</h3>
     </div>
-    <MainHeaderAbout />
+    <HeaderAbout />
   </header>
 );
 
-export default MainHeader;
+export default Header;
